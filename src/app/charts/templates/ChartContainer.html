@@ -1,0 +1,18 @@
+<div>
+    <button class="btn btn-default" data-toggle='button'
+        data-dojo-attach-event='click: toggle'>Charts</button>
+    <div data-dojo-attach-point='panel' class="panel panel-default hidden">
+        <div class="panel-heading">
+            Charts
+            <!-- <button class="close">&times;</button> -->
+        </div>
+        <div class="panel-body">
+            <div data-dojo-attach-point='alert' class="alert alert-info hidden">
+                Heads up! This chart does not reflect the newly filtered data.
+            </div>
+            <div data-dojo-attach-point="chartControlsDiv"></div>
+            <div data-dojo-attach-point="chartDiv"></div>
+            <p data-dojo-attach-point='chartMsg'></p>
+        </div>
+    </div>
+</div>

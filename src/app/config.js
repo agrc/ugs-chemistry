@@ -194,7 +194,8 @@ define([
             ['SDWIS', 'SDWIS'],
             ['UGS', 'UGS'],
             ['WQP', 'WQP']
-        ]
+        ],
+        chartMsgTxt: 'Showing ${0} results from ${1} stations.'
     };
 
     if (has('agrc-build') === 'prod') {
