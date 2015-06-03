@@ -1,0 +1,15 @@
+<div>
+    <div class="form-inline">
+        <select data-dojo-attach-point="paramSelect" class='form-control'>
+            <option value="-1">select a parameter...</option>
+        </select>
+        <select data-dojo-attach-point="typeSelect" class='form-control'>
+            <option value="-1">select a chart type...</option>
+            <option value="histogram">Histogram</option>
+            <option value="scatter">Time-series Scatter Plot</option>
+        </select>
+        <button class="btn btn-primary"
+            data-dojo-attach-event="click: onClick"
+            data-dojo-attach-point='btn'>Generate Chart</button>
+    </div>
+</div>

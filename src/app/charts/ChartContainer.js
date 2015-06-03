@@ -1,6 +1,7 @@
 define([
     'agrc/modules/Formatting',
 
+    'app/charts/Controls',
     'app/config',
 
     'dijit/_TemplatedMixin',
@@ -17,6 +18,7 @@ define([
 ], function (
     formatting,
 
+    Controls,
     config,
 
     _TemplatedMixin,
@@ -44,6 +46,10 @@ define([
             // tags:
             //      private
             console.log('app.charts.ChartContainer::postCreate', arguments);
+
+            this.own(
+                new Controls({}, this.chartControlsDiv)
+            );
 
             this.inherited(arguments);
         },

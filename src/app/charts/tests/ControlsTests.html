@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ChartContainer Tests</title>
+    <title>Controls Tests</title>
 
     <!-- META TAGS -->
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -22,9 +22,9 @@
 
         require({
             baseUrl: baseUrl,
-            packages: ['app', 'esri', 'dojo', 'dijit', 'dojox', 'dgrid', 'xstyle', 'dojo-bootstrap', 'put-selector', 'agrc']
+            packages: ['app', 'esri', 'dojo', 'dijit', 'dojox', 'xstyle']
         }, [
-            'app/charts/ChartContainer',
+            'app/charts/Controls',
 
             'dojo/domReady!'
         ], function (Module) {
@@ -32,9 +32,6 @@
             }, 'node');
 
             widgetUnderTest.startup();
-            widgetUnderTest.toggle();
-            // widgetUnderTest.updateMsg(1000, 2);
-            // widgetUnderTest.toggleAlert(true);
         });
 </script>
 </head>
