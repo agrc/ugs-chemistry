@@ -12,7 +12,7 @@
     "grunt-arcgis-press": "^0.2.0",
     "grunt-bump": "^0",
     "grunt-contrib-clean": "^0",
-    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-compress": "^0.14.0",
     "grunt-contrib-connect": "^0",
     "grunt-contrib-copy": "^0",
     "grunt-contrib-imagemin": "^1.0.0",
