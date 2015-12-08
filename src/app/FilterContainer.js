@@ -216,7 +216,7 @@ define([
                 }
             });
             var where = (wheres.length) ? wheres.join(' AND ') : undefined;
-            topic.publish(config.topics.selectFeatures, where, geo);
+            topic.publish(config.topics.filterFeatures, where, geo);
         }
     });
 });

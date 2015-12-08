@@ -93,6 +93,11 @@ define([
 
             var store;
 
+            domClass.toggle(
+                this.clearSelectionBtnContainer,
+                'hidden',
+                defQuery.indexOf(config.fieldNames.Id + ' = ') === -1
+            );
             if (domClass.contains(this.stationsTab, 'active')) {
                 if (!this.stationsGrid) {
                     this.initStationsGrid();
@@ -149,6 +154,13 @@ define([
             this.lastDefQuery = defQuery;
 
             return defQuery; // for testing only
+        },
+        clearSelection: function () {
+            // summary:
+            //      clear the station selection
+            console.log('app.Grid:clearSelection', arguments);
+
+            topic.publish(config.topics.clearStationSelection);
         },
         initResultsGrid: function () {
             // summary:

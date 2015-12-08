@@ -11,6 +11,13 @@
             <li>
                 <button type='button' class='btn btn-link disabled' disabled>Download </button>
             </li>
+            <li data-dojo-attach-point='clearSelectionBtnContainer' class='pull-right hidden'>
+                <button type='button' class='btn btn-info btn-sm'
+                    data-dojo-attach-event='click: clearSelection'>
+                        Clear Selected Station
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+            </li>
         </ul>
 
         <div class="tab-content">

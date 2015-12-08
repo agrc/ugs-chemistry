@@ -20,8 +20,8 @@ require([
     describe('app/FilterContainer', function () {
         var testWidget;
         beforeEach(function () {
-            mapController.selectFeatures = function () {};
-            topics.listen(config.topics.selectFeatures);
+            mapController.filterFeatures = function () {};
+            topics.listen(config.topics.filterFeatures);
             testWidget = new FilterContainer();
         });
         afterEach(function () {
@@ -83,7 +83,7 @@ require([
             it('builds a def query from all of the existing filters', function () {
                 testWidget.onFilterChange();
 
-                expect(config.topics.selectFeatures)
+                expect(config.topics.filterFeatures)
                     .toHaveBeenPublishedWith('one AND two', undefined);
             });
             it('adds the geometry', function () {
@@ -96,7 +96,7 @@ require([
 
                 testWidget.onFilterChange();
 
-                expect(config.topics.selectFeatures)
+                expect(config.topics.filterFeatures)
                     .toHaveBeenPublishedWith('one AND two', geo);
             });
             it('can show only geometry', function () {
@@ -109,7 +109,7 @@ require([
 
                 testWidget.onFilterChange();
 
-                expect(config.topics.selectFeatures)
+                expect(config.topics.filterFeatures)
                     .toHaveBeenPublishedWith(undefined, geo);
             });
             it('doesn\'t overwrite geometry', function () {
@@ -124,7 +124,7 @@ require([
 
                 testWidget.onFilterChange();
 
-                expect(config.topics.selectFeatures)
+                expect(config.topics.filterFeatures)
                     .toHaveBeenPublishedWith(undefined, geo);
             });
         });

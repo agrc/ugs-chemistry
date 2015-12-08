@@ -6,6 +6,7 @@ define([
     'esri/config',
     'esri/symbols/SimpleFillSymbol',
     'esri/symbols/SimpleLineSymbol',
+    'esri/symbols/SimpleMarkerSymbol',
 
     'dojo/domReady!'
 ], function (
@@ -14,7 +15,8 @@ define([
     Color,
     esriConfig,
     SimpleFillSymbol,
-    SimpleLineSymbol
+    SimpleLineSymbol,
+    SimpleMarkerSymbol
 ) {
     // force api to use CORS on mapserv thus removing the test request on app load
     // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
@@ -37,6 +39,7 @@ define([
 
     var baseUrl = window.location.protocol + '//' + agsDomain + '/arcgis/rest/services';
     var drawingColor = [51, 160, 44];
+    var selectionColor = [52, 208, 231];
     var StationId = 'StationId';
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -71,6 +74,9 @@ define([
                 .setColor(new Color(drawingColor)),
             new Color(drawingColor.concat([0.25]))
         ),
+        selectionSymbol: new SimpleMarkerSymbol()
+            .setColor(new Color(selectionColor))
+            .setSize(12),
 
         fieldNames: {
             // Stations
@@ -104,10 +110,11 @@ define([
         },
 
         topics: {
-            selectFeatures: 'ugs-select-features',
+            filterFeatures: 'ugs-filter-features',
             addGraphic: 'ugs-add-graphic',
             removeGraphic: 'ugs-remove-graphic',
-            queryIdsComplete: 'ugs-query-ids-complete'
+            queryIdsComplete: 'ugs-query-ids-complete',
+            clearStationSelection: 'ugs-clear-station-selection'
         },
 
         counties: [
