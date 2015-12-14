@@ -14,13 +14,12 @@
 
     <!-- JAVASCRIPT -->
     <script type='text/javascript' src="../../../dojo/dojo.js"></script>
+    <script type='text/javascript' src='../../packages.js'></script>
     <script type="text/javascript">
-        var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../';
         var widgetUnderTest;
 
         require({
-            baseUrl: baseUrl,
-            packages: ['app', 'agrc', 'esri', 'dojo', 'dijit', 'dojox', 'dojo-bootstrap', 'xstyle']
+            baseUrl: window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../'
         }, [
             'app/filters/DateFilter',
 

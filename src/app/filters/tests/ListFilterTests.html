@@ -16,14 +16,13 @@
 
     <!-- JAVASCRIPT -->
     <script type='text/javascript' src="../../../dojo/dojo.js"></script>
+    <script type='text/javascript' src='../../packages.js'></script>
     <script type="text/javascript">
-        var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../';
         var widgetUnderTest;
         var widgetUnderTest2;
 
         require({
-            baseUrl: baseUrl,
-            packages: ['app', 'esri', 'dojo', 'dojo-bootstrap', 'dijit', 'dojox', 'xstyle']
+            baseUrl: window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../'
         }, [
             'app/config',
             'app/filters/ListFilter',

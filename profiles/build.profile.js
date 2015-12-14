@@ -14,6 +14,7 @@ var profile = {
             include: [
                 'dojo/i18n',
                 'dojo/domReady',
+                'app/packages',
                 'app/run',
                 'app/App',
                 'dojox/gfx/path',
