@@ -1,25 +1,30 @@
 define([
     'app/config',
+    'app/mapController',
 
     'dijit/_TemplatedMixin',
     'dijit/_WidgetBase',
 
-    'dojo/_base/declare',
     'dojo/dom-construct',
+    'dojo/query',
     'dojo/text!app/charts/templates/Controls.html',
     'dojo/topic',
+    'dojo/_base/declare',
 
+    'dojo-bootstrap/Typeahead',
     'xstyle/css!app/charts/resources/Controls.css'
 ], function (
     config,
+    mapController,
 
     _TemplatedMixin,
     _WidgetBase,
 
-    declare,
     domConstruct,
+    query,
     template,
-    topic
+    topic,
+    declare
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:
@@ -37,7 +42,12 @@ define([
             //      private
             console.log('app.charts.Controls::postCreate', arguments);
 
-            this.buildParameterOptions(config.parameters);
+            var that = this;
+            mapController.getParameters().then(function (options) {
+                query(that.paramTxt).typeahead({
+                    source: options
+                });
+            });
 
             this.inherited(arguments);
         },
@@ -46,23 +56,16 @@ define([
             //      description
             console.log('app/charts/Controls:onClick', arguments);
 
-            topic.publish(config.topics.buildChart, this.paramSelect.value, this.typeSelect.value);
+            topic.publish(config.topics.buildChart, this.paramTxt.value, this.typeSelect.value);
 
             this.btn.innerHTML = 'Update Chart';
         },
-        buildParameterOptions: function (values) {
+        validate: function () {
             // summary:
-            //      description
-            // values: String[][]
-            console.log('app/charts/Controls:buildParameterOptions', arguments);
+            //      validate that both controls are filled out and disable/enable button
+            console.log('app.charts.Controls:validate', arguments);
 
-            var that = this;
-            values.forEach(function (v) {
-                domConstruct.create('option', {
-                    value: v[0],
-                    innerHTML: v[1]
-                }, that.paramSelect);
-            });
+            this.btn.disabled = this.paramTxt.value.length === 0 || this.typeSelect.value === '-1';
         }
     });
 });

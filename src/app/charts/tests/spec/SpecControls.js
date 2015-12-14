@@ -30,17 +30,5 @@ require([
                 expect(widget).toEqual(jasmine.any(WidgetUnderTest));
             });
         });
-        describe('buildParameterOptions', function () {
-            it('builds the correct number of options', function () {
-                domConstruct.empty(widget.paramSelect);
-                widget.buildParameterOptions([
-                    ['hello', 'hello hello'],
-                    ['goodbye', 'goodbye goodbye'],
-                    ['blah', 'blah blah']
-                ]);
-
-                expect(widget.paramSelect.children.length).toBe(3);
-            });
-        });
     });
 });
