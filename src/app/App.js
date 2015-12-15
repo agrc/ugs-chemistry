@@ -1,4 +1,5 @@
 define([
+    'app/charts/ChartContainer',
     'app/config',
     'app/FilterContainer',
     'app/Grid',
@@ -8,15 +9,16 @@ define([
     'dijit/_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
 
-    'dojo/_base/declare',
-    'dojo/_base/fx',
-    'dojo/_base/lang',
     'dojo/fx',
     'dojo/text!app/templates/App.html',
     'dojo/topic',
+    'dojo/_base/declare',
+    'dojo/_base/fx',
+    'dojo/_base/lang',
 
     'ijit/widgets/authentication/LoginRegister'
 ], function (
+    ChartContainer,
     config,
     FilterContainer,
     Grid,
@@ -26,12 +28,12 @@ define([
     _WidgetBase,
     _WidgetsInTemplateMixin,
 
-    declare,
-    baseFx,
-    lang,
     coreFx,
     template,
     topic,
+    declare,
+    baseFx,
+    lang,
 
     LoginRegister
 ) {
@@ -66,7 +68,8 @@ define([
                     securedServicesBaseUrl: '??'
                 }),
                 new FilterContainer(null, this.filterDiv),
-                new Grid(null, this.gridDiv)
+                new Grid(null, this.gridDiv),
+                new ChartContainer(null, this.chartsDiv)
             );
             mapController.initMap(this.mapDiv);
 

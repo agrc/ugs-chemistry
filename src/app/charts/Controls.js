@@ -8,7 +8,6 @@ define([
     'dojo/dom-construct',
     'dojo/query',
     'dojo/text!app/charts/templates/Controls.html',
-    'dojo/topic',
     'dojo/_base/declare',
 
     'dojo-bootstrap/Typeahead',
@@ -23,7 +22,6 @@ define([
     domConstruct,
     query,
     template,
-    topic,
     declare
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
@@ -56,7 +54,10 @@ define([
             //      description
             console.log('app/charts/Controls:onClick', arguments);
 
-            topic.publish(config.topics.buildChart, this.paramTxt.value, this.typeSelect.value);
+            this.emit('update-chart', {
+                param: this.paramTxt.value,
+                chartType: this.typeSelect.value
+            });
 
             this.btn.innerHTML = 'Update Chart';
         },

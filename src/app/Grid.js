@@ -1,6 +1,7 @@
 define([
     'app/AGSStore',
     'app/config',
+    'app/_ResultsQueryMixin',
 
     'dgrid/extensions/ColumnResizer',
     'dgrid/OnDemandGrid',
@@ -25,6 +26,7 @@ define([
 ], function (
     AGSStore,
     config,
+    _ResultsQueryMixin,
 
     ColumnResizer,
     Grid,
@@ -46,7 +48,7 @@ define([
 ) {
     var fn = config.fieldNames;
 
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ErrorMessageMixin], {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ErrorMessageMixin, _ResultsQueryMixin], {
         // description:
         //      A container to hold grids and download link.
 
@@ -124,14 +126,7 @@ define([
                 if (!this.resultsGrid) {
                     this.initResultsGrid();
                 }
-                // if the def query is a query on the results table then strip out the stations part of it
-                var match = defQuery.match(/FROM Results WHERE (.*)\)/);
-                if (match) {
-                    defQuery = match[1];
-                } else {
-                    // this is a query on just the stations table which requires wrapping it in the query below
-                    defQuery = 'StationId IN (SELECT StationId FROM Stations WHERE ' + defQuery + ')';
-                }
+                defQuery = this.convertToResultsQuery(defQuery);
                 if (!this.resultsGrid.collection ||
                     (this.resultsGrid.collection && this.resultsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({

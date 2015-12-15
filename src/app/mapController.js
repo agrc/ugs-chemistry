@@ -1,6 +1,5 @@
 define([
     'agrc/widgets/map/BaseMap',
-    'agrc/widgets/map/BaseMapSelector',
 
     'app/config',
 
@@ -19,7 +18,6 @@ define([
     'esri/tasks/QueryTask'
 ], function (
     BaseMap,
-    BaseMapSelector,
 
     config,
 
@@ -64,14 +62,7 @@ define([
             var that = this;
 
             this.map = new BaseMap(mapDiv, {
-                useDefaultBaseMap: false
-            });
-
-            var selector;
-            selector = new BaseMapSelector({
-                map: this.map,
-                id: 'tundra',
-                position: 'TR'
+                defaultBaseMap: 'Terrain'
             });
 
             this.dLayer = new ArcGISDynamicMapServiceLayer(config.urls.mapService, {

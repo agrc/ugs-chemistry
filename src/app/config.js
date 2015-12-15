@@ -37,7 +37,7 @@ define([
         agsDomain = window.location.host;
     }
 
-    var baseUrl = window.location.protocol + '//' + agsDomain + '/arcgis/rest/services';
+    var baseUrl = window.location.protocol + '//' + agsDomain + '/arcgis/rest/services/UGSChemistry';
     var drawingColor = [51, 160, 44];
     var selectionColor = [52, 208, 231];
     var StationId = 'StationId';
@@ -62,8 +62,9 @@ define([
         apiKey: '', // acquire at developer.mapserv.utah.gov
 
         urls: {
-            mapService: baseUrl + '/UGSChemistry/MapServer',
-            geometry: baseUrl + '/Geometry/GeometryServer'
+            mapService: baseUrl + '/MapService/MapServer',
+            geometry: baseUrl + '/Geometry/GeometryServer',
+            buildChart: baseUrl + '/Toolbox/GPServer/BuildChart'
         },
 
         minFeatureLayerScale: 500000,
@@ -115,8 +116,7 @@ define([
             removeGraphic: 'ugs-remove-graphic',
             queryIdsComplete: 'ugs-query-ids-complete',
             clearStationSelection: 'ugs-clear-station-selection',
-            toggleGrid: 'ugs-toggle-grid',
-            buildChart: 'ugs-build-chart'
+            toggleGrid: 'ugs-toggle-grid'
         },
 
         counties: [

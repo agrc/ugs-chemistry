@@ -23,6 +23,10 @@
                 location: './mustache',
                 main: 'mustache'
             }, {
+                name: 'plotlyjs',
+                location: './plotly.js',
+                main: 'dist/plotly'
+            }, {
                 name: 'spin',
                 location: './spinjs',
                 main: 'spin'

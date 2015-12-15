@@ -1,11 +1,14 @@
 $buffer = 20px
+$top_buffer = $buffer + 55px
 .chart-container
     .btn-default
         right $buffer
-        top $buffer
+        top $top_buffer
         position absolute
+        z-index 99
     .panel-default
         width 500px
         position absolute
         right $buffer + 88px
-        top $buffer
+        top $top_buffer
+        z-index 99
