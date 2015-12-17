@@ -18,9 +18,8 @@ define([
 
     'esri/tasks/Geoprocessor',
 
-    'plotlyjs',
-
     'dojo-bootstrap/Button',
+    'highcharts',
     'xstyle/css!app/charts/resources/ChartContainer.css'
 ], function (
     formatting,
@@ -40,9 +39,7 @@ define([
     declare,
     lang,
 
-    Geoprocessor,
-
-    Plotly
+    Geoprocessor
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ResultsQueryMixin], {
         // description:
@@ -96,9 +93,7 @@ define([
                         // TODO: toast?
                         console.error('error with chart service');
                     }),
-                    this.gp.on('execute-complete', function (evt) {
-                        console.debug(evt);
-                    })
+                    this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
                 );
             }
 
@@ -106,6 +101,61 @@ define([
                 defQuery: query,
                 chartType: evt.chartType
             });
+        },
+        onChartGPComplete: function (evt) {
+            // summary:
+            //      callback for gp task
+            // evt: Event Object
+            console.log('app.charts.ChartContainer:onChartGPComplete', arguments);
+
+            var data = evt.results[0].value;
+            var label = formatting.round(data[1].pop(), 2);
+            var numResults = evt.results[1].value;
+            var numStations = evt.results[2].value;
+            this.updateMsg(numResults, numStations);
+            var chart = new window.Highcharts.Chart({
+                chart: {
+                    renderTo: this.chartDiv,
+                    type: 'column',
+                    height: 300
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0,
+                        groupPadding: 0,
+                        borderWidth: 0.5,
+                        shadow: false
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'count',
+                    data: data[0]
+                }],
+                title: false,
+                xAxis: {
+                    categories: data[1],
+                    labels: {
+                        formatter: function () {
+                            return formatting.round(this.value, 2);
+                        },
+                        x: -20
+                    }
+                },
+                yAxis: {
+                    title: false
+                }
+            });
+            chart.renderer.label(label, 437, 286, null, null, null, true, true, 'extra-label')
+                .css({
+                    fontSize: '11px'
+                })
+                .add();
         },
         toggle: function () {
             // summary:

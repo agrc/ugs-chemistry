@@ -23,9 +23,9 @@
                 location: './mustache',
                 main: 'mustache'
             }, {
-                name: 'plotlyjs',
-                location: './plotly.js',
-                main: 'dist/plotly'
+                name: 'highcharts',
+                location: './highcharts',
+                main: 'lib/highcharts.src'
             }, {
                 name: 'spin',
                 location: './spinjs',
