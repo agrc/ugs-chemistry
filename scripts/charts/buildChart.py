@@ -1,5 +1,5 @@
 import pyodbc
-from numpy import histogram
+from numpy import histogram, sqrt
 from json import dumps
 from arcpy import GetParameterAsText, SetParameterAsText
 from secrets import *
@@ -24,7 +24,7 @@ def get_histogram(def_query):
                    '{} AND ResultValue IS NOT NULL'.format(def_query))
     rows = [r[0] for r in cursor.fetchall()]
 
-    return dumps([a.tolist() for a in histogram(rows)])
+    return dumps([a.tolist() for a in histogram(rows, bins=sqrt(len(rows)))])
 
 
 def get_scatter(def_query):
