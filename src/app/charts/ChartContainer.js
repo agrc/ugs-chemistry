@@ -109,7 +109,7 @@ define([
             console.log('app.charts.ChartContainer:onChartGPComplete', arguments);
 
             var data = evt.results[0].value;
-            var label = formatting.round(data[1].pop(), 2);
+            // var label = formatting.round(data[1].pop(), 2);
             var numResults = evt.results[1].value;
             var numStations = evt.results[2].value;
             this.updateMsg(numResults, numStations);
@@ -143,19 +143,19 @@ define([
                     labels: {
                         formatter: function () {
                             return formatting.round(this.value, 2);
-                        },
-                        x: -20
+                        }
+                        // x: -20
                     }
                 },
                 yAxis: {
                     title: false
                 }
             });
-            chart.renderer.label(label, 437, 286, null, null, null, true, true, 'extra-label')
-                .css({
-                    fontSize: '11px'
-                })
-                .add();
+            // chart.renderer.label(label, 437, 286, null, null, null, true, true, 'extra-label')
+            //     .css({
+            //         fontSize: '11px'
+            //     })
+            //     .add();
         },
         toggle: function () {
             // summary:
