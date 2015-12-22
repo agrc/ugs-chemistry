@@ -97,9 +97,19 @@ define([
                 );
             }
 
+            var chartType;
+            var logTransform = false;
+            if (evt.chartType === 'histogram-log-transform') {
+                chartType = 'histogram';
+                logTransform = true;
+            } else {
+                chartType = evt.chartType;
+            }
+
             this.gp.execute({
                 defQuery: query,
-                chartType: evt.chartType
+                chartType: chartType,
+                logTransform: logTransform
             });
         },
         onChartGPComplete: function (evt) {
@@ -109,11 +119,10 @@ define([
             console.log('app.charts.ChartContainer:onChartGPComplete', arguments);
 
             var data = evt.results[0].value;
-            // var label = formatting.round(data[1].pop(), 2);
             var numResults = evt.results[1].value;
             var numStations = evt.results[2].value;
             this.updateMsg(numResults, numStations);
-            var chart = new window.Highcharts.Chart({
+            new window.Highcharts.Chart({
                 chart: {
                     renderTo: this.chartDiv,
                     type: 'column',
@@ -144,7 +153,6 @@ define([
                         formatter: function () {
                             return formatting.round(this.value, 2);
                         }
-                        // x: -20
                     }
                 },
                 yAxis: {
