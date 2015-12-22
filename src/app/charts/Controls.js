@@ -10,6 +10,8 @@ define([
     'dojo/text!app/charts/templates/Controls.html',
     'dojo/_base/declare',
 
+    'ladda',
+
     'dojo-bootstrap/Typeahead',
     'xstyle/css!app/charts/resources/Controls.css'
 ], function (
@@ -22,7 +24,9 @@ define([
     domConstruct,
     query,
     template,
-    declare
+    declare,
+
+    Ladda
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:
@@ -49,17 +53,28 @@ define([
 
             this.inherited(arguments);
         },
+        initSpinner: function () {
+            // summary:
+            //      description
+            // param or return
+            console.log('app.charts.Controls:initSpinner', arguments);
+
+            if (!this.spinner) {
+                this.spinner = Ladda.create(this.btn);
+            }
+        },
         onClick: function () {
             // summary:
             //      description
             console.log('app/charts/Controls:onClick', arguments);
 
+            this.spinner.start();
             this.emit('update-chart', {
                 param: this.paramTxt.value,
                 chartType: this.typeSelect.value
             });
 
-            this.btn.innerHTML = 'Update Chart';
+            // this.btn.innerHTML = 'Update Chart';
         },
         validate: function () {
             // summary:
@@ -67,6 +82,14 @@ define([
             console.log('app.charts.Controls:validate', arguments);
 
             this.btn.disabled = this.paramTxt.value.length === 0 || this.typeSelect.value === '-1';
+        },
+        resetSpinner: function () {
+            // summary:
+            //      description
+            // param or return
+            console.log('app.charts.Controls:resetSpinner', arguments);
+
+            this.spinner.stop();
         }
     });
 });

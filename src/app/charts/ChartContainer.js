@@ -61,12 +61,12 @@ define([
             //      private
             console.log('app.charts.ChartContainer::postCreate', arguments);
 
-            var controls = new Controls({}, this.chartControlsDiv);
-            controls.startup();
+            this.controls = new Controls({}, this.chartControlsDiv);
+            this.controls.startup();
             var that = this;
             this.own(
-                controls,
-                controls.on('update-chart', lang.hitch(this, 'updateChart')),
+                this.controls,
+                this.controls.on('update-chart', lang.hitch(this, 'updateChart')),
                 topic.subscribe(config.topics.queryIdsComplete, function (newQuery) {
                     that.currentQuery = newQuery;
                 })
@@ -85,6 +85,7 @@ define([
             console.log('app.charts.ChartContainer:updateChart', arguments);
 
             var query = this.convertToResultsQuery(this.currentQuery) + ' AND Param = \'' + evt.param + '\'';
+            var that = this;
 
             if (!this.gp) {
                 this.gp = new Geoprocessor(config.urls.buildChart);
@@ -92,6 +93,7 @@ define([
                     this.gp.on('error', function () {
                         // TODO: toast?
                         console.error('error with chart service');
+                        that.controls.resetSpinner();
                     }),
                     this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
                 );
@@ -118,6 +120,7 @@ define([
             // evt: Event Object
             console.log('app.charts.ChartContainer:onChartGPComplete', arguments);
 
+            this.controls.resetSpinner();
             var data = evt.results[0].value;
             var numResults = evt.results[1].value;
             var numStations = evt.results[2].value;
@@ -159,11 +162,6 @@ define([
                     title: false
                 }
             });
-            // chart.renderer.label(label, 437, 286, null, null, null, true, true, 'extra-label')
-            //     .css({
-            //         fontSize: '11px'
-            //     })
-            //     .add();
         },
         toggle: function () {
             // summary:
@@ -171,6 +169,8 @@ define([
             console.log('app/charts/ChartContainer:toggle', arguments);
 
             domClass.toggle(this.panel, 'hidden');
+
+            this.controls.initSpinner();
         },
         updateMsg: function (num_results, num_stations) {
             // summary:
