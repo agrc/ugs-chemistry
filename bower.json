@@ -4,7 +4,7 @@
   "dependencies": {
     "agrc": "agrc-widgets#2.11.3",
     "agrc-jasmine-matchers": "~0.1.0",
-    "bootstrap-css-only": "~3.3.4",
+    "bootstrap-css-only": "~3.2",
     "dgrid": "~0.4.0",
     "dgrid03": "dgrid#~0.3.0",
     "dijit": "~1.10",
@@ -19,12 +19,10 @@
     "stubmodule": "~0.6.1",
     "util": "dojo-util#~1.10",
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
-    "highcharts": "~4.2.0",
-    "ladda-bootstrap": "https://github.com/msurguy/ladda-bootstrap.git#7fee807770cdd27c24ea0e128491ef90443dba79"
+    "highcharts": "~4.2.0"
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
-    "dgrid": "~0.4.0",
-    "ladda-bootstrap": "7fee807770cdd27c24ea0e128491ef90443dba79"
+    "dgrid": "~0.4.0"
   }
 }
