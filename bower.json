@@ -10,7 +10,6 @@
     "dijit": "~1.10",
     "dojo": "~1.10",
     "dojo-bootstrap": "37e0a4dc53aa1f70d1b2cb6a199b100644cfe9c2",
-    "dojo-esri-arcgis-server-store": "https://github.com/thollingsheadesri/dojo-esri-arcgis-server-store.git#~1.0.0",
     "dojox": "~1.10",
     "ijit": "agrc-ijit#3.1.1",
     "jasmine-favicon-reporter": "*",
@@ -19,7 +18,8 @@
     "stubmodule": "~0.6.1",
     "util": "dojo-util#~1.10",
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
-    "highcharts": "~4.2.0"
+    "highcharts": "~4.2.0",
+    "toaster": "agrc-toaster#~1.0.1"
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",

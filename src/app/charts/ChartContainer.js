@@ -52,6 +52,9 @@ define([
         // gp: Geoprocessor
         gp: null,
 
+        // currentQuery: string
+        currentQuery: null,
+
         // Properties to be sent into constructor
 
         postCreate: function () {
@@ -84,6 +87,11 @@ define([
             // }
             console.log('app.charts.ChartContainer:updateChart', arguments);
 
+            if (!this.currentQuery || '') {
+                topic.publish(config.topics.toast, 'You must add at least one filter.');
+                this.controls.resetSpinner();
+                return;
+            }
             var query = this.convertToResultsQuery(this.currentQuery) + ' AND Param = \'' + evt.param + '\'';
             var that = this;
 

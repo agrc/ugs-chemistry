@@ -37,5 +37,17 @@ require([
                 expect(widget.chartMsg.innerHTML).toBe('Showing 11,000 results from 200 stations.');
             });
         });
+        describe('updateChart', function () {
+            it('does not fire gp task if there is not existing filter', function () {
+                widget.gp = {
+                    execute: jasmine.createSpy()
+                };
+                widget.currentQuery = null;
+
+                widget.updateChart({});
+
+                expect(widget.gp.execute).not.toHaveBeenCalled();
+            });
+        });
     });
 });

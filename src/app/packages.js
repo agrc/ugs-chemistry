@@ -13,6 +13,7 @@
             'esri',
             'ijit',
             'put-selector',
+            'toaster',
             'xstyle',
             {
                 name: 'ladda',

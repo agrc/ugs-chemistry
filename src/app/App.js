@@ -9,6 +9,7 @@ define([
     'dijit/_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
 
+    'dojo/dom-construct',
     'dojo/fx',
     'dojo/text!app/templates/App.html',
     'dojo/topic',
@@ -16,7 +17,9 @@ define([
     'dojo/_base/fx',
     'dojo/_base/lang',
 
-    'ijit/widgets/authentication/LoginRegister'
+    'ijit/widgets/authentication/LoginRegister',
+
+    'toaster/dist/Toaster'
 ], function (
     ChartContainer,
     config,
@@ -28,6 +31,7 @@ define([
     _WidgetBase,
     _WidgetsInTemplateMixin,
 
+    domConstruct,
     coreFx,
     template,
     topic,
@@ -35,7 +39,9 @@ define([
     baseFx,
     lang,
 
-    LoginRegister
+    LoginRegister,
+
+    Toaster
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -69,7 +75,10 @@ define([
                 }),
                 new FilterContainer(null, this.filterDiv),
                 new Grid(null, this.gridDiv),
-                new ChartContainer(null, this.chartsDiv)
+                new ChartContainer(null, this.chartsDiv),
+                new Toaster['default']({
+                    topic: config.topics.toast
+                }, domConstruct.create('div', {}, document.body))
             );
             mapController.initMap(this.mapDiv);
 

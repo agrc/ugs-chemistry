@@ -36,5 +36,6 @@ src/put-selector/
 src/spin.js/
 src/spinjs/
 src/stubmodule/
+src/toaster/
 src/util/
 src/xstyle/

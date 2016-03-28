@@ -116,7 +116,8 @@ define([
             removeGraphic: 'ugs-remove-graphic',
             queryIdsComplete: 'ugs-query-ids-complete',
             clearStationSelection: 'ugs-clear-station-selection',
-            toggleGrid: 'ugs-toggle-grid'
+            toggleGrid: 'ugs-toggle-grid',
+            toast: 'ugs-toast'
         },
 
         counties: [
