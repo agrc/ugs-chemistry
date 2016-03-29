@@ -12,6 +12,7 @@
             'dstore',
             'esri',
             'ijit',
+            'moment',
             'put-selector',
             'toaster',
             'xstyle',
