@@ -6,15 +6,24 @@ ugs-chemistry
 
 Water Chemistry data viewer built for UGS
 
-###URL's
+### URL's
 [test.mapserv.utah.gov/ugschemistry](http://test.mapserv.utah.gov/ugschemistry)
 [current mockup](http://share.flairbuilder.com/?sid=I64FYv95R7)
 
-###Contacts
+### Installation
+All services go into a folder called `UGSChemistry`.
+
+Publish `scripts/charts/buildChart.py` to `/Toolbox`
+- sync
+- install `pymssql` by running `pip install scripts/charts/pymssql-2.1.2-cp27-cp27m-win_amd64.whl`
+
+Publish `maps/MapService.mxd` to `/MapService`
+
+### Contacts
 **Paul Inkenbrandt**
 paulinkenbrandt@utah.gov
 
-###Information from Paul
+### Information from Paul
 [**SOW**](https://docs.google.com/a/utah.gov/document/d/1Vc6JsHJuqKI29NZRqGk_JSLdM3AWy2lI9_D1vqEp9iE/edit)
 [**Parameters Requested**](https://docs.google.com/a/utah.gov/spreadsheets/d/1EY_30rSQxvH2JrVhjVSRzOdyh9nVryA5RbofVZhp0hs/edit?usp=sharing)
 

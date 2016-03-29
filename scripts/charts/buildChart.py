@@ -1,10 +1,10 @@
-import pyodbc
+import pymssql
 from numpy import histogram, sqrt, log
 from json import dumps
 from arcpy import GetParameterAsText, SetParameterAsText, GetParameter
 from secrets import *
 
-db_connection = pyodbc.connect(CONNECTION_STRING)
+db_connection = pymssql.connect(**CONNECTION)
 cursor = db_connection.cursor()
 
 """
