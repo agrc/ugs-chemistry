@@ -33,7 +33,7 @@ def get_histogram(def_query, logTransform):
 
 
 def get_scatter(def_query):
-    cursor.execute('SELECT CAST(SampleDate as DATE), ResultValue FROM Results'
+    cursor.execute('SELECT CAST(Datediff(s, \'1970-01-01\', SampleDate) as BIGINT)*1000, ResultValue FROM Results'
                    ' WHERE {} AND {}'.format(def_query, exclude_query))
     return dumps([list(r) for r in cursor.fetchall()])
 

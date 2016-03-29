@@ -18,7 +18,7 @@
     "stubmodule": "~0.6.1",
     "util": "dojo-util#~1.10",
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
-    "highcharts": "~4.2.0",
+    "highcharts": "~4.2",
     "toaster": "agrc-toaster#~1.0.1"
   },
   "resolutions": {

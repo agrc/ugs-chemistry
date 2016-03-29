@@ -38,7 +38,7 @@ require([
             });
         });
         describe('updateChart', function () {
-            it('does not fire gp task if there is not existing filter', function () {
+            it('does not fire gp task if there is not an existing filter', function () {
                 widget.gp = {
                     execute: jasmine.createSpy()
                 };

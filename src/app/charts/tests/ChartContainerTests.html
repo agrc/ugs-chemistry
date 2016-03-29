@@ -11,8 +11,10 @@
     <style type='text/css'>
         body {
             padding: 50px;
+            height: 1000px;
         }
-        #node2.chart-container .panel-default {
+        #node2.chart-container .panel-default,
+        #node3.chart-container .panel-default {
             position: static;
         }
     </style>
@@ -23,32 +25,42 @@
     <script type="text/javascript">
         var widgetUnderTest;
         var widgetUnderTest2;
+        var widgetUnderTest3;
 
         require({
             baseUrl: window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../'
         }, [
             'app/charts/ChartContainer',
             'dojo/text!app/charts/tests/data/histogram_data.json',
+            'dojo/text!app/charts/tests/data/scatter_data.json',
 
             'dojo/domReady!'
-        ], function (Module, histogramTxt) {
-            widgetUnderTest = new Module({}, 'node');
+        ], function (Module, histogramTxt, scatterTxt) {
+            widgetUnderTest = new Module({currentChartType: 'histogram'}, 'node');
 
             widgetUnderTest.startup();
             widgetUnderTest.toggle();
 
-            widgetUnderTest2 = new Module({}, 'node2');
+            widgetUnderTest2 = new Module({currentChartType: 'histogram'}, 'node2');
 
             widgetUnderTest2.startup();
             widgetUnderTest2.toggle();
             widgetUnderTest2.onChartGPComplete(JSON.parse(histogramTxt));
             // widgetUnderTest.updateMsg(1000, 2);
             // widgetUnderTest.toggleAlert(true);
+
+            widgetUnderTest3 = new Module({}, 'node3');
+
+            widgetUnderTest3.startup();
+            widgetUnderTest3.toggle();
+            widgetUnderTest3.currentParam = 'Nitrate';
+            widgetUnderTest3.onChartGPComplete(JSON.parse(scatterTxt));
         });
 </script>
 </head>
 <body class='claro'>
     <div id="node"></div>
+    <div id="node3"></div>
     <div id="node2"></div>
 </body>
 </html>

@@ -26,7 +26,7 @@
             }, {
                 name: 'highcharts',
                 location: './highcharts',
-                main: 'lib/highcharts.src'
+                main: 'highcharts.src'
             }, {
                 name: 'spin',
                 location: './spinjs',

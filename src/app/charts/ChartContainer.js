@@ -20,6 +20,7 @@ define([
 
     'dojo-bootstrap/Button',
     'highcharts',
+    'highcharts/modules/boost.src',
     'xstyle/css!app/charts/resources/ChartContainer.css'
 ], function (
     formatting,
@@ -54,6 +55,12 @@ define([
 
         // currentQuery: string
         currentQuery: null,
+
+        // currentChartType: string
+        currentChartType: null,
+
+        // currentParam: string
+        currentParam: null,
 
         // Properties to be sent into constructor
 
@@ -99,8 +106,10 @@ define([
                 this.gp = new Geoprocessor(config.urls.buildChart);
                 this.own(
                     this.gp.on('error', function () {
-                        // TODO: toast?
-                        console.error('error with chart service');
+                        topic.publish(config.topics.toast, {
+                            message: 'error with chart service',
+                            type: 'danger'
+                        });
                         that.controls.resetSpinner();
                     }),
                     this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
@@ -121,6 +130,9 @@ define([
                 chartType: chartType,
                 logTransform: logTransform
             });
+
+            this.currentChartType = chartType;
+            this.currentParam = evt.param;
         },
         onChartGPComplete: function (evt) {
             // summary:
@@ -133,19 +145,69 @@ define([
             var numResults = evt.results[1].value;
             var numStations = evt.results[2].value;
             this.updateMsg(numResults, numStations);
-            new window.Highcharts.Chart({
-                chart: {
-                    renderTo: this.chartDiv,
-                    type: 'column',
-                    height: 300
-                },
-                plotOptions: {
+
+            var chartType;
+            var plotOptions;
+            var xAxis;
+            var yAxis;
+            var seriesData;
+            var color;
+            var header = '';
+            if (this.currentChartType === 'histogram') {
+                chartType = 'column';
+                plotOptions = {
                     column: {
                         pointPadding: 0,
                         groupPadding: 0,
                         borderWidth: 0.5,
-                        shadow: false
+                        shadow: false,
+                        tooltip: {
+                            headerFormat: header
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: header
                     }
+                };
+                xAxis = {
+                    categories: data[1],
+                    labels: {
+                        formatter: function () {
+                            return formatting.round(this.value, 2);
+                        }
+                    }
+                };
+                yAxis = {
+                    title: false
+                };
+                seriesData = data[0];
+                color = 'rgb(124, 181, 236)';
+            } else {
+                chartType = 'scatter';
+                plotOptions = {
+                    scatter: {
+                        tooltip: {
+                            headerFormat: header,
+                            pointFormatter: function () {
+                                return new Date(this.x).toLocaleDateString() + '<br>' + this.y + ' mg/L';
+                            }
+                        }
+                    }
+                };
+                xAxis = {
+                    type: 'datetime'
+                };
+                yAxis = {
+                    title: false
+                };
+                seriesData = data;
+                color = 'rgba(124, 181, 236, 0.5)';
+            }
+            new window.Highcharts.Chart({
+                chart: {
+                    renderTo: this.chartDiv,
+                    type: chartType,
+                    height: 300
                 },
                 credits: {
                     enabled: false
@@ -155,20 +217,13 @@ define([
                 },
                 series: [{
                     name: 'count',
-                    data: data[0]
+                    data: seriesData,
+                    color: color
                 }],
+                plotOptions: plotOptions,
                 title: false,
-                xAxis: {
-                    categories: data[1],
-                    labels: {
-                        formatter: function () {
-                            return formatting.round(this.value, 2);
-                        }
-                    }
-                },
-                yAxis: {
-                    title: false
-                }
+                xAxis: xAxis,
+                yAxis: yAxis
             });
         },
         toggle: function () {
