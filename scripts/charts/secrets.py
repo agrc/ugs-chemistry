@@ -1,1 +1,0 @@
-CONNECTION_STRING = 'DRIVER={SQL Server};SERVER=(local);DATABASE=UGSWaterChemistry;UID=UGSAdmin;PWD=UGSAdmin'
