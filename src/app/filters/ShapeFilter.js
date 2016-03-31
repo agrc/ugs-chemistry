@@ -5,6 +5,7 @@ define([
     'app/filters/_Filter',
     'app/mapController',
 
+    'dojo/aspect',
     'dojo/has!web-workers?esri/geometry/geometryEngineAsync:esri/geometry/geometryEngine',
     'dojo/query',
     'dojo/text!app/filters/templates/ShapeFilter.html',
@@ -21,6 +22,7 @@ define([
     _Filter,
     mapController,
 
+    aspect,
     geometryEngine,
     query,
     template,
@@ -84,6 +86,13 @@ define([
                     showTooltips: true
                 });
                 this.draw.on('draw-complete', lang.hitch(this, 'onDrawComplete'));
+
+                aspect.after(this.draw, 'deactivate', function () {
+                    topic.publish(config.topics.resumeMapClick);
+                });
+                aspect.after(this.draw, 'activate', function () {
+                    topic.publish(config.topics.pauseMapClick);
+                });
             }
 
             this.draw.activate(Draw.POLYGON);

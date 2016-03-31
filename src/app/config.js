@@ -117,7 +117,9 @@ define([
             queryIdsComplete: 'ugs-query-ids-complete',
             clearStationSelection: 'ugs-clear-station-selection',
             toggleGrid: 'ugs-toggle-grid',
-            toast: 'ugs-toast'
+            toast: 'ugs-toast',
+            pauseMapClick: 'ugs-pause-map-click',
+            resumeMapClick: 'ugs-resume-map-click'
         },
 
         counties: [

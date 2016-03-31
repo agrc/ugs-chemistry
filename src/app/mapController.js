@@ -54,6 +54,10 @@ define([
         //      The id of the currently selected station if there is one
         selectedStationId: null,
 
+        // mapClickHandler: Object
+        //      Used to pause this event during polygon draw
+        mapClickHandler: null,
+
         initMap: function (mapDiv) {
             // summary:
             //      Sets up the map
@@ -98,7 +102,9 @@ define([
             });
             topic.subscribe(config.topics.clearStationSelection, lang.hitch(this, 'clearStationSelection'));
 
-            this.map.on('click', lang.hitch(this, 'onMapClick'));
+            this.mapClickHandler = on.pausable(this.map, 'click', lang.hitch(this, 'onMapClick'));
+            topic.subscribe(config.topics.pauseMapClick, lang.hitch(this.mapClickHandler, 'pause'));
+            topic.subscribe(config.topics.resumeMapClick, lang.hitch(this.mapClickHandler, 'resume'));
         },
         onMapClick: function (evt) {
             // summary:
