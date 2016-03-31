@@ -12,8 +12,7 @@ define([
     'dojo/text!app/filters/templates/ListFilter.html',
 
     'dojo-bootstrap/Button',
-    'dojo-bootstrap/Tooltip',
-    'xstyle/css!app/filters/resources/ListFilter.css'
+    'dojo-bootstrap/Tooltip'
 ], function (
     config,
     _Filter,

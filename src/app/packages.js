@@ -19,7 +19,7 @@
             {
                 name: 'ladda',
                 location: './ladda-bootstrap',
-                main: 'dist/ladda'
+                main: 'js/ladda'
             }, {
                 name: 'mustache',
                 location: './mustache',

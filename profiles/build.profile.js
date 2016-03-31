@@ -21,7 +21,6 @@ var profile = {
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'
             ],
-            targetStylesheet: 'app/resources/App.css',
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
@@ -38,6 +37,20 @@ var profile = {
         resourceTags: {
             copyOnly: function (filename, mid) {
                 return mid === 'spin/jquery.spin';
+            }
+        }
+    },{
+        name: 'moment',
+        main: 'moment',
+        resourceTags: {
+            amd: function (filename) {
+                return /\.js$/.test(filename);
+            },
+            test: function (filename, mid) {
+                return /\/tests/.test(mid);
+            },
+            miniExclude: function (filename, mid) {
+                return /\/src/.test(mid) || /\/templates/.test(mid);
             }
         }
     }],
@@ -57,9 +70,6 @@ var profile = {
 
         // We aren’t loading tests in production
         'dojo-test-sniff':0
-    },
-    plugins: {
-        'xstyle/css': 'xstyle/build/amd-css'
     },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri', 'toaster']

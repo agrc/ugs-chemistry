@@ -20,8 +20,7 @@ define([
 
     'dojo-bootstrap/Button',
     'highcharts',
-    'highcharts/modules/boost.src',
-    'xstyle/css!app/charts/resources/ChartContainer.css'
+    'highcharts/modules/boost.src'
 ], function (
     formatting,
 

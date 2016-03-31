@@ -12,8 +12,7 @@ define([
 
     'ladda',
 
-    'dojo-bootstrap/Typeahead',
-    'xstyle/css!app/charts/resources/Controls.css'
+    'dojo-bootstrap/Typeahead'
 ], function (
     config,
     mapController,
@@ -68,6 +67,8 @@ define([
             //      description
             console.log('app/charts/Controls:onClick', arguments);
 
+            this.initSpinner();
+
             this.spinner.start();
             this.emit('update-chart', {
                 param: this.paramTxt.value,
@@ -88,6 +89,8 @@ define([
             //      description
             // param or return
             console.log('app.charts.Controls:resetSpinner', arguments);
+
+            this.initSpinner();
 
             this.spinner.stop();
         }

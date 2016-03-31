@@ -13,9 +13,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
 
-    'esri/toolbars/draw',
-
-    'xstyle/css!app/filters/resources/ShapeFilter.css'
+    'esri/toolbars/draw'
 ], function (
     formatting,
 

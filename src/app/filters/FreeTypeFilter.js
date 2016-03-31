@@ -6,8 +6,7 @@ define([
     'dojo/query',
     'dojo/text!app/filters/templates/FreeTypeFilter.html',
 
-    'dojo-bootstrap/Typeahead',
-    'xstyle/css!app/filters/resources/FreeTypeFilter.css'
+    'dojo-bootstrap/Typeahead'
 ], function (
     _Filter,
     _RelatedTableQuery,

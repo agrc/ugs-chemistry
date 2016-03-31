@@ -21,8 +21,7 @@ define([
 
     'ijit/modules/_ErrorMessageMixin',
 
-    'dojo-bootstrap/Tab',
-    'xstyle/css!app/resources/Grid.css'
+    'dojo-bootstrap/Tab'
 ], function (
     AGSStore,
     config,

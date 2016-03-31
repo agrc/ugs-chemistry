@@ -13,8 +13,7 @@ define([
     'dojo/text!app/filters/templates/DateFilter.html',
     'dojo/_base/declare',
 
-    'dijit/form/DateTextBox',
-    'xstyle/css!app/filters/resources/DateFilter.css'
+    'dijit/form/DateTextBox'
 ], function (
     Formatting,
 
