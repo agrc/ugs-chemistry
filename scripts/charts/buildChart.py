@@ -22,8 +22,8 @@ exclude_query = 'ResultValue IS NOT NULL AND ResultValue != 0'
 
 
 def get_histogram(def_query, logTransform):
-    cursor.execute('SELECT ResultValue FROM Results WHERE '
-                   '{} AND {}'.format(def_query, exclude_query))
+    cursor.execute('SELECT ResultValue FROM {} WHERE '
+                   '{} AND {}'.format(TABLE_TEMPLATE.format('Results'), def_query, exclude_query))
     if logTransform:
         rows = [log(r[0]) for r in cursor.fetchall()]
     else:
@@ -33,21 +33,23 @@ def get_histogram(def_query, logTransform):
 
 
 def get_scatter(def_query):
-    cursor.execute('SELECT CAST(Datediff(s, \'1970-01-01\', SampleDate) as BIGINT)*1000, ResultValue FROM Results'
-                   ' WHERE {} AND {}'.format(def_query, exclude_query))
+    cursor.execute('SELECT CAST(Datediff(s, \'1970-01-01\', SampleDate) as BIGINT)*1000, ResultValue FROM {}'
+                   ' WHERE {} AND {}'.format(TABLE_TEMPLATE.format('Results'), def_query, exclude_query))
     return dumps([list(r) for r in cursor.fetchall()])
 
 
 def get_num_results(def_query):
-    cursor.execute('SELECT COUNT(*) FROM Results WHERE '
-                   '{} AND {}'.format(def_query, exclude_query))
+    cursor.execute('SELECT COUNT(*) FROM {} WHERE '
+                   '{} AND {}'.format(TABLE_TEMPLATE.format('Results'), def_query, exclude_query))
     return cursor.fetchone()[0]
 
 
 def get_num_stations(def_query):
-    cursor.execute('SELECT COUNT(*) FROM Stations WHERE StationId IN '
-                   '(SELECT StationId FROM Results WHERE {} AND '
-                   '{})'.format(def_query, exclude_query))
+    cursor.execute('SELECT COUNT(*) FROM {} WHERE StationId IN '
+                   '(SELECT StationId FROM {} WHERE {} AND '
+                   '{})'.format(TABLE_TEMPLATE.format('Stations'),
+                                TABLE_TEMPLATE.format('Results'),
+                                def_query, exclude_query))
     return cursor.fetchone()[0]
 
 
