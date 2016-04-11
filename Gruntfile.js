@@ -321,7 +321,7 @@ module.exports = function (grunt) {
             },
             stylus: {
                 files: 'src/app/**/*.styl',
-                tasks: ['newer:stylus']
+                tasks: ['stylus']
             }
         }
     });
