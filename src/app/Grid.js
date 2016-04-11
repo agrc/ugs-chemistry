@@ -19,8 +19,6 @@ define([
     'dojo/_base/lang',
     'dojo/_base/query',
 
-    'ijit/modules/_ErrorMessageMixin',
-
     'dojo-bootstrap/Tab'
 ], function (
     AGSStore,
@@ -41,13 +39,11 @@ define([
     topic,
     declare,
     lang,
-    query,
-
-    _ErrorMessageMixin
+    query
 ) {
     var fn = config.fieldNames;
 
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ErrorMessageMixin, _ResultsQueryMixin], {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ResultsQueryMixin], {
         // description:
         //      A container to hold grids and download link.
 
@@ -84,7 +80,10 @@ define([
             //      show an error message
             console.log('app/Grid:onError', arguments);
 
-            this.showErrMsg('There was an error populating the grid!');
+            topic.publish(config.topics.toast, {
+                message: 'There was an error populating the grid!',
+                type: 'danger'
+            });
         },
         populateGrid: function (defQuery) {
             // summary:
