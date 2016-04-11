@@ -5,7 +5,7 @@
     "agrc": "agrc-widgets#2.11.3",
     "agrc-jasmine-matchers": "~0.1.0",
     "bootstrap-css-only": "~3.2",
-    "dgrid": "~0.4.0",
+    "dgrid": "~1.0",
     "dgrid03": "dgrid#~0.3.0",
     "dojo-bootstrap": "37e0a4dc53aa1f70d1b2cb6a199b100644cfe9c2",
     "esri": "arcgis-js-api#~3.16.0",
@@ -20,7 +20,7 @@
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
-    "dgrid": "~0.4.0",
+    "dgrid": "~1.0",
     "dstore": "~1.0.3 || ~1.1.1",
     "dijit": "v1.10.4/esri-3.14.0",
     "dojo": "v1.10.4/esri-3.14.0"

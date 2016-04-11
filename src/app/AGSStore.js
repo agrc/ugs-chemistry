@@ -79,7 +79,7 @@ define([
 
             var results = this._request(requestArgs);
             return new QueryResults(results.data, {
-                totalLength: when(this._request_cached(this.target + '&returnCountOnly=true', {
+                totalLength: when(request(this.target + '&returnCountOnly=true', {
                     handleAs: 'json'
                 }), function (response) {
                     return response.count;
@@ -87,23 +87,6 @@ define([
                 response: results.response
             });
         },
-        _request_cached: (function () {
-            // summary:
-            //      wrapper around request that caches the results
-            // url: String
-            // options: Object
-            // returns: Promise || Object
-            // memoize return values to help with load on the server
-            var cache = {};
-
-            return function (url, options) {
-                console.log('app.AGSStore:_request_cached', arguments);
-                return cache[url] || request(url, options).then(function (response) {
-                    cache[url] = response;
-                    return response;
-                });
-            };
-        })(),
         _renderSortParams: function (sort) {
             // summary:
             //        Constructs sort-related params to be inserted in the query string
