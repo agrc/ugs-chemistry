@@ -19,7 +19,9 @@ define([
 
     'ijit/widgets/authentication/LoginRegister',
 
-    'toaster/dist/Toaster'
+    'toaster/dist/Toaster',
+
+    'dijit/layout/BorderContainer'
 ], function (
     ChartContainer,
     config,
@@ -58,10 +60,12 @@ define([
 
             AGRC.app = this;
         },
-        postCreate: function () {
+        startup: function () {
             // summary:
             //      Fires when
-            console.log('app.App::postCreate', arguments);
+            console.log('app.App::startup', arguments);
+
+            this.inherited(arguments);
 
             // set version number
             this.version.innerHTML = AGRC.version;
@@ -81,8 +85,6 @@ define([
                 }, domConstruct.create('div', {}, document.body))
             );
             mapController.initMap(this.mapDiv);
-
-            this.inherited(arguments);
         }
     });
 });

@@ -20,12 +20,27 @@ html,
     overflow: hidden
     padding: 0
     width: 100%
+    .border-container
+        height: 100%
+        width: 100%
+        padding 0
+        .dijitBorderContainer-dijitContentPane
+            padding 0
+        .dijitBorderContainer-child
+            border-left none
+            border-right none
+            border-bottom none
 
     /* NAV BAR */
     .navbar
         background-color: $background-grey
         background-image: none
-        border-color: $border-color
+        border-color $border-color
+        margin-bottom 0
+    .navbar-main
+        border: none
+        border-radius: 0
+        height 55px
 
     .logo
         padding: 5px 0 5px 10px
@@ -48,16 +63,15 @@ html,
         margin: 0
 
     /* CENTER (MAP) */
-    .map-div
-        bottom: $grid-height
-        left: 0
-        position: fixed
-        right: 0
-        top: 0
+    .center
+        padding: 0
+        border-top 1px solid $border-color
 
+    .map-div
+        height 100%
+        width 100%
         .esriSimpleSliderTL
             background-color: $background-grey
-            top: 75px
 
         .esriSimpleSliderTL,
         .esriSimpleSliderVertical .esriSimpleSliderIncrementButton
@@ -68,7 +82,6 @@ html,
 
         .selectorMain
             right: 10px
-            top: 72px
 
         // fix tooltip collision with bootstrap
         .tooltip
@@ -77,12 +90,7 @@ html,
     /* GRID */
     [data-dojo-attach-point='gridContainer']
         border-top: 1px solid $border-color
-        border-width: 1px
-        bottom: 0
         height: $grid-height
-        left: 0
-        position: fixed
-        right: 0
 
 /* GENERAL STUFF */
 /* remove orange outline in chrome */

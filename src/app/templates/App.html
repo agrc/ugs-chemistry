@@ -1,25 +1,37 @@
 <div>
-    <div class='navbar navbar-default navbar-fixed-top'>
-        <ul class="nav navbar-nav">
-            <li>
-                <img class='logo' src="app/resources/images/ugs-logo.svg">
-            </li>
-            <li class='navbar-brand'>
-                Utah Water Chemistry Database
-                <a data-dojo-attach-point='version' class='version' href='ChangeLog.html'></a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav pull-right">
-            <li>
-                <div data-dojo-attach-point='logoutDiv'></div>
-            </li>
-        </ul>
-    </div>
-    <div data-dojo-attach-point='mapDiv' class='map-div'>
-        <div data-dojo-attach-point="filterDiv"></div>
-        <div data-dojo-attach-point="chartsDiv"></div>
-    </div>
-    <div data-dojo-attach-point="gridContainer">
-        <div data-dojo-attach-point="gridDiv"></div>
+    <div data-dojo-type="dijit/layout/BorderContainer"
+        data-dojo-props='gutters: false'
+        class='border-container'>
+        <div data-dojo-type='dijit/layout/ContentPane'
+            data-dojo-props='region: "top", splitter: false'
+            class='navbar navbar-default navbar-main'>
+            <ul class="nav navbar-nav">
+                <li>
+                    <img class='logo' src="app/resources/images/ugs-logo.svg">
+                </li>
+                <li class='navbar-brand'>
+                    Utah Water Chemistry Database
+                    <a data-dojo-attach-point='version' class='version' href='ChangeLog.html'></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <div data-dojo-attach-point='logoutDiv'></div>
+                </li>
+            </ul>
+        </div>
+        <div data-dojo-type='dijit/layout/ContentPane'
+            class='center'
+            data-dojo-props='region: "center", splitter: false'>
+            <div data-dojo-attach-point='mapDiv' class='map-div'>
+                <div data-dojo-attach-point="filterDiv"></div>
+                <div data-dojo-attach-point="chartsDiv"></div>
+            </div>
+        </div>
+        <div data-dojo-type='dijit/layout/ContentPane'
+            data-dojo-props='region: "bottom", splitter: true'
+            data-dojo-attach-point="gridContainer">
+            <div data-dojo-attach-point="gridDiv"></div>
+        </div>
     </div>
 </div>
