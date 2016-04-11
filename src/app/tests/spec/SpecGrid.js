@@ -38,7 +38,7 @@ require([
 
                 // query on the stations table
                 expect(widget.populateGrid('Blah = 2'))
-                    .toBe('StationId IN (SELECT StationId FROM Stations WHERE Blah = 2)');
+                    .toBe('StationId IN (SELECT StationId FROM ugswaterchemistry.Stations WHERE Blah = 2)');
 
                 // query on results tabls
                 expect(widget.populateGrid("StationId IN (SELECT StationId FROM Results WHERE SampleDate >= '01/01/2015' AND SampleDate <= '02/01/2015')"))
