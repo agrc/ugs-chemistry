@@ -75,11 +75,12 @@ define([
             });
             this.grid = new Grid(null, this.gridDiv);
             this.filterContainer = new FilterContainer(null, this.filterDiv);
+            this.chartContainer = new ChartContainer(null, this.chartsDiv);
             this.children = [
                 this.loginRegister,
                 this.filterContainer,
                 this.grid,
-                new ChartContainer(null, this.chartsDiv),
+                this.chartContainer,
                 new Toaster['default']({
                     topic: config.topics.toast
                 }, domConstruct.create('div', {}, document.body))
@@ -110,6 +111,7 @@ define([
             this.grid.switchToSecure();
 
             this.filterContainer.onFilterChange();
+            this.chartContainer.switchToSecure();
         },
         onRememberMeUnsuccessful: function () {
             // load unsecure app
