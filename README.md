@@ -15,7 +15,12 @@ All services go into a folder called `UGSChemistry`.
 
 Publish `scripts/charts/buildChart.py` to `/Toolbox`
 - sync
-- install `pymssql` by running `pip install scripts/charts/pymssql-2.1.2-cp27-cp27m-win_amd64.whl`
+- install `pymssql` by running `pip install scripts/charts/pymssql-2.1.2-cp27-cp27m-win_amd64.whl` (Got the wheels from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pymssql))
+- Use `StationId IN (SELECT StationId FROM ugswaterchemistry.Stations WHERE CountyCode IN (49005)) AND Param = 'nitrate'` for `defQuery`
+- You'll likely need to manually copy `scripts/charts/secrets.py` to `C:\arcgisserver\directories\arcgissystem\arcgisinput\UGSChemistry\Toolbox.GPServer\extracted\v101\charts`
+
+Publish `scripts/charts/buildChartSecure.py` to `/ToolboxSecure`
+- same params as above only lock down to ugs roles
 
 Publish `maps/MapService.mxd` to `/MapService`
 

@@ -7,7 +7,6 @@ define([
 
     'dojo/aspect',
     'dojo/has!web-workers?esri/geometry/geometryEngineAsync:esri/geometry/geometryEngine',
-    'dojo/query',
     'dojo/text!app/filters/templates/ShapeFilter.html',
     'dojo/topic',
     'dojo/when',
@@ -24,7 +23,6 @@ define([
 
     aspect,
     geometryEngine,
-    query,
     template,
     topic,
     when,
@@ -59,8 +57,8 @@ define([
             console.log('app/filters/ShapeFilter:startup', arguments);
 
             var that = this;
-            query(this.body).on('show.bs.collapse', lang.hitch(this, 'enableDrawing'));
-            query(this.body).on('hide.bs.collapse', function () {
+            $(this.body).on('show.bs.collapse', lang.hitch(this, 'enableDrawing'));
+            $(this.body).on('hide.bs.collapse', function () {
                 that.draw.deactivate();
             });
 

@@ -3,28 +3,28 @@ define([
     'app/filters/_Filter',
     'app/filters/_RelatedTableQuery',
 
-    'dojo/_base/declare',
-    'dojo/_base/lang',
     'dojo/dom-class',
     'dojo/dom-construct',
     'dojo/on',
     'dojo/query',
     'dojo/text!app/filters/templates/ListFilter.html',
+    'dojo/_base/declare',
+    'dojo/_base/lang',
 
-    'dojo-bootstrap/Button',
-    'dojo-bootstrap/Tooltip'
+    'bootstrap',
+    'bootstrap'
 ], function (
     config,
     _Filter,
     _RelatedTableQuery,
 
-    declare,
-    lang,
     domClass,
     domConstruct,
     on,
     query,
-    template
+    template,
+    declare,
+    lang
 ) {
     var c = declare([_Filter, _RelatedTableQuery], {
         // description:
@@ -89,7 +89,7 @@ define([
                 domClass.remove(this.anyAllGroup, 'hidden');
             }
 
-            query('[data-toggle="tooltip"]', this.domNode).tooltip({
+            $('[data-toggle="tooltip"]', this.domNode).tooltip({
                 delay: {
                     show: 750,
                     hide: 100

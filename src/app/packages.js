@@ -7,7 +7,6 @@
             'dgrid03',
             'dijit',
             'dojo',
-            'dojo-bootstrap',
             'dojox',
             'dstore',
             'esri',
@@ -17,6 +16,18 @@
             'toaster',
             'xstyle',
             {
+                name: 'bootstrap',
+                location: './bootstrap',
+                main: 'dist/js/bootstrap'
+            }, {
+                name: 'highcharts',
+                location: './highcharts',
+                main: 'highcharts.src'
+            }, {
+                name: 'jquery',
+                location: './jquery/dist',
+                main: 'jquery'
+            }, {
                 name: 'ladda',
                 location: './ladda-bootstrap',
                 main: 'js/ladda'
@@ -25,10 +36,6 @@
                 location: './mustache',
                 main: 'mustache'
             }, {
-                name: 'highcharts',
-                location: './highcharts',
-                main: 'highcharts.src'
-            }, {
                 name: 'spin',
                 location: './spinjs',
                 main: 'spin'
@@ -36,13 +43,13 @@
                 name: 'stubmodule',
                 location: './stubmodule',
                 main: 'src/stub-module'
+            }, {
+                name: 'typeahead',
+                location: './bootstrap3-typeahead',
+                main: 'bootstrap3-typeahead'
             }
         ],
         map: {
-            ijit: {
-                jquery: 'dojo/query',
-                bootstrap: 'app/dojo-bootstrap-plugins'
-            },
             ladda: {
                 spin: 'ladda/dist/spin'
             },

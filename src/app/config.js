@@ -51,20 +51,27 @@ define([
 
         // appName: String
         //      for permissions proxy
-        appName: 'ugs-chemistry',
+        appName: 'ugschemistry',
 
         // version.: String
         //      The version number.
         version: '0.7.0',
+
+        // user: Object
+        //      Permission proxy user object
+        user: null,
 
         // apiKey: String
         //      The api key used for services on api.mapserv.utah.gov
         apiKey: '', // acquire at developer.mapserv.utah.gov
 
         urls: {
+            baseUrl: baseUrl,
             mapService: baseUrl + '/MapService/MapServer',
+            secureMapService: baseUrl + '/SecureMapService/MapServer',
             geometry: baseUrl + '/Geometry/GeometryServer',
-            buildChart: baseUrl + '/Toolbox/GPServer/BuildChart'
+            buildChart: baseUrl + '/Toolbox/GPServer/BuildChart',
+            secureBuildChart: baseUrl + '/ToolboxSecure/GPServer/BuildChartSecure'
         },
 
         minFeatureLayerScale: 500000,

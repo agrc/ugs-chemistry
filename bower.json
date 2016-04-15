@@ -4,19 +4,19 @@
   "dependencies": {
     "agrc": "agrc-widgets#2.11.3",
     "agrc-jasmine-matchers": "~0.1.0",
-    "bootstrap-css-only": "~3.2",
+    "bootstrap": "~3.3",
     "dgrid": "~1.0",
     "dgrid03": "dgrid#~0.3.0",
-    "dojo-bootstrap": "37e0a4dc53aa1f70d1b2cb6a199b100644cfe9c2",
     "esri": "arcgis-js-api#~3.16.0",
-    "ijit": "agrc-ijit#3.1.1",
+    "ijit": "agrc-ijit#~3.1",
     "jasmine-favicon-reporter": "*",
     "jasmine-jsreporter": "~0.1.2",
     "put-selector": "~0.3.6",
     "stubmodule": "~0.6.1",
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
     "highcharts": "~4.2",
-    "toaster": "agrc-toaster#~1.0.1"
+    "toaster": "agrc-toaster#~1.0.1",
+    "bootstrap3-typeahead": "~4.0.1"
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",

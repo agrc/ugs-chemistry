@@ -3,21 +3,19 @@ define([
     'dijit/_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
 
-    'dojo/_base/declare',
-    'dojo/_base/query',
     'dojo/Evented',
     'dojo/on',
+    'dojo/_base/declare',
 
-    'dojo-bootstrap/Collapse'
+    'bootstrap'
 ], function (
     _TemplatedMixin,
     _WidgetBase,
     _WidgetsInTempalteMixin,
 
-    declare,
-    query,
     Evented,
-    on
+    on,
+    declare
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTempalteMixin, Evented], {
         // description:
@@ -46,7 +44,7 @@ define([
             //      description
             console.log('app/_Filter:postCreate', arguments);
 
-            query(this.body).collapse({
+            $(this.body).collapse({
                 parent: this.parent,
                 toggle: false
             });
@@ -55,7 +53,7 @@ define([
             on(this.heading, 'click', function (evt) {
                 if (evt.srcElement !== that.closeBtn &&
                     evt.srcElement !== that.closeSpan) {
-                    query(that.body).collapse('toggle');
+                    $(that.body).collapse('toggle');
                 }
             });
 
@@ -75,7 +73,7 @@ define([
             //      opens the body of the filter
             console.log('app/_Filter:open', arguments);
 
-            query(this.body).collapse('show');
+            $(this.body).collapse('show');
 
             this.inherited(arguments);
         },

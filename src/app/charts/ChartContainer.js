@@ -18,7 +18,7 @@ define([
 
     'esri/tasks/Geoprocessor',
 
-    'dojo-bootstrap/Button',
+    'bootstrap',
     'highcharts',
     'highcharts/modules/boost.src'
 ], function (
@@ -99,20 +99,9 @@ define([
                 return;
             }
             var query = this.convertToResultsQuery(this.currentQuery) + ' AND Param = \'' + evt.param + '\'';
-            var that = this;
 
             if (!this.gp) {
-                this.gp = new Geoprocessor(config.urls.buildChart);
-                this.own(
-                    this.gp.on('error', function () {
-                        topic.publish(config.topics.toast, {
-                            message: 'error with chart service',
-                            type: 'danger'
-                        });
-                        that.controls.resetSpinner();
-                    }),
-                    this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
-                );
+                this.initGP(config.urls.buildChart);
             }
 
             var chartType;
@@ -132,6 +121,24 @@ define([
 
             this.currentChartType = chartType;
             this.currentParam = evt.param;
+        },
+        initGP: function (url) {
+            // summary:
+            //      set up geoprocessor
+            console.log('app/charts/ChartContainer:initGP', arguments);
+
+            var that = this;
+            this.gp = new Geoprocessor(url);
+            this.own(
+                this.gp.on('error', function () {
+                    topic.publish(config.topics.toast, {
+                        message: 'error with chart service',
+                        type: 'danger'
+                    });
+                    that.controls.resetSpinner();
+                }),
+                this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
+            );
         },
         onChartGPComplete: function (evt) {
             // summary:
@@ -254,6 +261,13 @@ define([
 
             var f = (show) ? domClass.remove : domClass.add;
             f(this.alert, 'hidden');
+        },
+        switchToSecure: function () {
+            // summary:
+            //      switches to secure chart
+            console.log('app/charts/ChartContainer:switchToSecure', arguments);
+
+            this.initGP(config.urls.secureBuildChart);
         }
     });
 });

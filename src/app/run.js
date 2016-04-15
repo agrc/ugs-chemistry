@@ -10,7 +10,7 @@
             window.dojoConfig.isJasmineTestRunner
             ) ? '/src' : './'
     };
-    require(config, ['dojo/has', 'dojo/parser', 'dojo/domReady!'], function (has, parser) {
+    require(config, ['dojo/has', 'dojo/parser', 'jquery', 'dojo/domReady!'], function (has, parser) {
         has.add('web-workers', function () {
             return window.Worker;
         });

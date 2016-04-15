@@ -1,4 +1,6 @@
 define([
+    'app/config',
+
     'dojo/io-query',
     'dojo/request',
     'dojo/when',
@@ -8,6 +10,8 @@ define([
     'dstore/QueryResults',
     'dstore/Request'
 ], function (
+    config,
+
     ioQuery,
     request,
     when,
@@ -49,7 +53,8 @@ define([
                 f: 'json',
                 returnGeometry: false,
                 outFields: outFields,
-                where: options.where || '1=1'
+                where: options.where || '1=1',
+                token: (config.user) ? config.user.token : null
             });
             this.target += '/query?' + urlQuery;
 

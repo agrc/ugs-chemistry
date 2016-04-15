@@ -1,0 +1,14 @@
+{
+    "application": {
+        "name": "ugschemistry",
+        "description": "The Utah Water Chemistry Database",
+        "baseUrl": "<path to application>",
+        "adminPage": "user_admin.html"
+    },
+    "adminEmails": ["<admin emails>"],
+    "roles": [
+        "admin",
+        "viewer"
+    ],
+    "creationToken": "<token>"
+}

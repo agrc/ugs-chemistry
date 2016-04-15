@@ -31,7 +31,8 @@ module.exports = function (grunt) {
         'src/app/**/*.html',
         'src/app/**/*.css',
         'src/index.html',
-        'src/ChangeLog.html'
+        'src/ChangeLog.html',
+        'src/user_admin.html'
     ];
     var gruntFile = 'Gruntfile.js';
     var jsFiles = [
@@ -304,7 +305,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/',
-                    src: ['app/**/*.styl'],
+                    src: ['app/resources/App.styl'],
                     dest: 'src/',
                     ext: '.css'
                 }]

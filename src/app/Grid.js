@@ -17,9 +17,8 @@ define([
     'dojo/topic',
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/query',
 
-    'dojo-bootstrap/Tab'
+    'bootstrap'
 ], function (
     AGSStore,
     config,
@@ -38,8 +37,7 @@ define([
     template,
     topic,
     declare,
-    lang,
-    query
+    lang
 ) {
     var fn = config.fieldNames;
 
@@ -60,6 +58,10 @@ define([
 
         // Properties to be sent into constructor
 
+        // mapServiceUrl: String
+        //      updated to secured after successful sign in in app/App
+        mapServiceUrl: config.urls.mapService,
+
         postCreate: function () {
             // summary:
             //      set up listeners
@@ -68,7 +70,7 @@ define([
             var that = this;
             this.own(
                 topic.subscribe(config.topics.queryIdsComplete, lang.hitch(this, 'populateGrid')),
-                query('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
                     that.populateGrid(that.lastDefQuery);
                 })
             );
@@ -84,6 +86,23 @@ define([
                 message: 'There was an error populating the grid!',
                 type: 'danger'
             });
+        },
+        switchToSecure: function () {
+            // summary:
+            //      switch url to secured url and refresh grid
+            console.log('app/Grid:switchToSecure', arguments);
+
+            this.mapServiceUrl = config.urls.secureMapService;
+
+            // clear out collections to prevent caching in populateGrid
+            if (this.stationsGrid && this.stationsGrid.collection) {
+                this.stationsGrid.collection = null;
+            }
+            if (this.resultsGrid && this.resultsGrid.collection) {
+                this.resultsGrid.collection = null;
+            }
+
+            this.clearSelection();
         },
         populateGrid: function (defQuery) {
             // summary:
@@ -105,7 +124,7 @@ define([
                 if (!this.stationsGrid.collection ||
                     (this.stationsGrid.collection && this.stationsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
-                        target: config.urls.mapService + '/' + config.layerIndices.main,
+                        target: this.mapServiceUrl + '/' + config.layerIndices.main,
                         idProperty: 'Id',
                         outFields: [
                             fn.Id,
@@ -128,7 +147,7 @@ define([
                 if (!this.resultsGrid.collection ||
                     (this.resultsGrid.collection && this.resultsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
-                        target: config.urls.mapService + '/' + config.layerIndices.results,
+                        target: this.mapServiceUrl + '/' + config.layerIndices.results,
                         idProperty: 'Id',
                         outFields: [
                             fn.Id,

@@ -6,13 +6,12 @@ define([
     'dijit/_WidgetBase',
 
     'dojo/dom-construct',
-    'dojo/query',
     'dojo/text!app/charts/templates/Controls.html',
     'dojo/_base/declare',
 
     'ladda',
 
-    'dojo-bootstrap/Typeahead'
+    'typeahead'
 ], function (
     config,
     mapController,
@@ -21,7 +20,6 @@ define([
     _WidgetBase,
 
     domConstruct,
-    query,
     template,
     declare,
 
@@ -45,7 +43,7 @@ define([
 
             var that = this;
             mapController.getParameters().then(function (options) {
-                query(that.paramTxt).typeahead({
+                $(that.paramTxt).typeahead({
                     source: options
                 });
             });

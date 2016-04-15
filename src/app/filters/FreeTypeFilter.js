@@ -3,16 +3,15 @@ define([
     'app/filters/_RelatedTableQuery',
 
     'dojo/_base/declare',
-    'dojo/query',
     'dojo/text!app/filters/templates/FreeTypeFilter.html',
 
-    'dojo-bootstrap/Typeahead'
+    'typeahead'
 ], function (
     _Filter,
     _RelatedTableQuery,
 
     declare,
-    query,
+
     template
 ) {
     return declare([_Filter, _RelatedTableQuery], {
@@ -48,7 +47,7 @@ define([
 
             if (this.options) {
                 this.options.then(function (options) {
-                    query(that.txtBox).typeahead({
+                    $(that.txtBox).typeahead({
                         source: options
                     });
                 });

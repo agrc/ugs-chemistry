@@ -14,11 +14,11 @@ src/agrc/
 src/app/**/*.css
 src/bootstrap-css-only/
 src/bootstrap/
+src/bootstrap3-typeahead/
 src/components-jasmine/
 src/dgrid/
 src/dgrid03/
 src/dijit/
-src/dojo-bootstrap/
 src/dojo-esri-arcgis-server-store/
 src/dojo/
 src/dojox/

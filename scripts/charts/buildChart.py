@@ -53,13 +53,12 @@ def get_num_stations(def_query):
     return cursor.fetchone()[0]
 
 
-# For testing
-# def SetParameterAsText(n, data):
-#     print('parameter: {}'.format(n))
-#     print(data)
+def main(secure=False):
+    global exclude_query
 
+    if not secure:
+        exclude_query += ' AND DataSource != \'SDWIS\''
 
-if __name__ == '__main__':
     def_query = GetParameterAsText(0)
     if GetParameterAsText(1) == 'histogram':
         SetParameterAsText(3, get_histogram(def_query, GetParameter(2)))
@@ -67,3 +66,13 @@ if __name__ == '__main__':
         SetParameterAsText(3, get_scatter(def_query))
     SetParameterAsText(4, get_num_results(def_query))
     SetParameterAsText(5, get_num_stations(def_query))
+
+
+# For testing
+# def SetParameterAsText(n, data):
+#     print('parameter: {}'.format(n))
+#     print(data)
+
+
+if __name__ == '__main__':
+    main()

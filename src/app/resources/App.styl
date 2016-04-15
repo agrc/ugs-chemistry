@@ -1,7 +1,7 @@
 @import '../../dijit/themes/tundra/tundra.css'
 @import '../../esri/css/esri.css'
 @import '../../agrc/resources/map/BaseMap.css'
-@import '../../bootstrap-css-only/css/bootstrap.css'
+@import '../../bootstrap/dist/css/bootstrap.css'
 @import '../../dgrid/css/dgrid.css'
 @import '../../ijit/resources/authentication/LoginRegister.css'
 @import '../../toaster/src/resources/Toaster'
@@ -30,6 +30,8 @@ html,
             border-left none
             border-right none
             border-bottom none
+        .dijitSplitter
+            background-color $background-grey
 
     /* NAV BAR */
     .navbar
@@ -38,39 +40,32 @@ html,
         border-color $border-color
         margin-bottom 0
     .navbar-main
-        border: none
         border-radius: 0
         height 55px
-
     .logo
         padding: 5px 0 5px 10px
-
     .navbar-brand
         font-size: 28px
         padding-top: 18px
-
     .version
         display: inline
         font-size: 12px
         letter-spacing: 0
         padding: 0
         text-decoration: none
-
     .version:hover
         text-decoration: underline !important
-
     .logoutDiv a
         margin: 0
 
     /* CENTER (MAP) */
     .center
         padding: 0
-        border-top 1px solid $border-color
-        border-bottom 1px solid $border-color
-
     .map-div
-        height 100%
         width 100%
+        top 55px
+        bottom 0
+        position absolute
         .esriSimpleSliderTL
             background-color: $background-grey
 
@@ -90,7 +85,6 @@ html,
 
     /* GRID */
     [data-dojo-attach-point='gridContainer']
-        border-top: 1px solid $border-color
         height: $grid-height
 
 /* GENERAL STUFF */
