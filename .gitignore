@@ -7,7 +7,8 @@
 deploy
 dist/
 node_modules/
-scripts/charts/secrets.py
+scripts/toolbox/database_connections/
+scripts/toolbox/secrets.py
 secrets.json
 src/agrc-jasmine-matchers/
 src/agrc/

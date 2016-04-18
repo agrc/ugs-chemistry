@@ -71,7 +71,9 @@ define([
             secureMapService: baseUrl + '/SecureMapService/MapServer',
             geometry: baseUrl + '/Geometry/GeometryServer',
             buildChart: baseUrl + '/Toolbox/GPServer/BuildChart',
-            secureBuildChart: baseUrl + '/ToolboxSecure/GPServer/BuildChartSecure'
+            secureBuildChart: baseUrl + '/ToolboxSecure/GPServer/BuildChartSecure',
+            download: baseUrl + '/Toolbox/GPServer/Download',
+            secureDownload: baseUrl + '/ToolboxSecure/GPServer/DownloadSecure'
         },
 
         minFeatureLayerScale: 500000,

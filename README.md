@@ -13,14 +13,15 @@ Water Chemistry data viewer built for UGS
 ### Installation
 All services go into a folder called `UGSChemistry`.
 
-Publish `scripts/charts/buildChart.py` to `/Toolbox`
-- sync
+Publish `scripts/toolbox/Toolbox.tbx/BuildChart` & `Download` to `/Toolbox`
+- asynchronous
 - install `pymssql` by running `pip install scripts/charts/pymssql-2.1.2-cp27-cp27m-win_amd64.whl` (Got the wheels from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pymssql))
-- Use `StationId IN (SELECT StationId FROM ugswaterchemistry.Stations WHERE CountyCode IN (49005)) AND Param = 'nitrate'` for `defQuery`
-- You'll likely need to manually copy `scripts/charts/secrets.py` to `C:\arcgisserver\directories\arcgissystem\arcgisinput\UGSChemistry\Toolbox.GPServer\extracted\v101\charts`
+- Defaults values should be sufficient to successfully run the tools.
+- You'll likely need to manually copy `scripts/toolbox/secrets.py` to `C:\arcgisserver\directories\arcgissystem\arcgisinput\UGSChemistry\Toolbox.GPServer\extracted\v101\charts`
 
-Publish `scripts/charts/buildChartSecure.py` to `/ToolboxSecure`
+Publish `scripts/toolbox/Toolbox.tbx/BuildChartSecure` and `DownloadSecure` to `/ToolboxSecure`
 - same params as above only lock down to ugs roles
+- you may need to clear out your scratch folder (restart Catalog) before running `DownloadSecure`.
 
 Publish `maps/MapService.mxd` to `/MapService`
 

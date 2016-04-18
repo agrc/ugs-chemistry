@@ -1,6 +1,7 @@
 define([
     'app/AGSStore',
     'app/config',
+    'app/Download',
     'app/_ResultsQueryMixin',
 
     'dgrid/extensions/ColumnResizer',
@@ -22,6 +23,7 @@ define([
 ], function (
     AGSStore,
     config,
+    Download,
     _ResultsQueryMixin,
 
     ColumnResizer,
@@ -68,11 +70,13 @@ define([
             console.log('app.Grid::postCreate', arguments);
 
             var that = this;
+            this.download = new Download({}, this.downloadDiv);
             this.own(
                 topic.subscribe(config.topics.queryIdsComplete, lang.hitch(this, 'populateGrid')),
                 $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
                     that.populateGrid(that.lastDefQuery);
-                })
+                }),
+                this.download
             );
 
             this.inherited(arguments);
@@ -101,6 +105,8 @@ define([
             if (this.resultsGrid && this.resultsGrid.collection) {
                 this.resultsGrid.collection = null;
             }
+
+            this.download.switchToSecure();
 
             this.clearSelection();
         },

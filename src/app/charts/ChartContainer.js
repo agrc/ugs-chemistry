@@ -3,6 +3,7 @@ define([
 
     'app/charts/Controls',
     'app/config',
+    'app/_GPMixin',
     'app/_ResultsQueryMixin',
 
     'dijit/_TemplatedMixin',
@@ -10,13 +11,12 @@ define([
     'dijit/_WidgetsInTemplateMixin',
 
     'dojo/dom-class',
+    'dojo/promise/all',
     'dojo/string',
     'dojo/text!app/charts/templates/ChartContainer.html',
     'dojo/topic',
     'dojo/_base/declare',
     'dojo/_base/lang',
-
-    'esri/tasks/Geoprocessor',
 
     'bootstrap',
     'highcharts',
@@ -26,6 +26,7 @@ define([
 
     Controls,
     config,
+    _GPMixin,
     _ResultsQueryMixin,
 
     _TemplatedMixin,
@@ -33,15 +34,14 @@ define([
     _WidgetsInTemplateMixin,
 
     domClass,
+    all,
     dojoString,
     template,
     topic,
     declare,
-    lang,
-
-    Geoprocessor
+    lang
 ) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ResultsQueryMixin], {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _ResultsQueryMixin, _GPMixin], {
         // description:
         //      Container that holds all of the chart widgets.
 
@@ -72,13 +72,9 @@ define([
 
             this.controls = new Controls({}, this.chartControlsDiv);
             this.controls.startup();
-            var that = this;
             this.own(
                 this.controls,
-                this.controls.on('update-chart', lang.hitch(this, 'updateChart')),
-                topic.subscribe(config.topics.queryIdsComplete, function (newQuery) {
-                    that.currentQuery = newQuery;
-                })
+                this.controls.on('update-chart', lang.hitch(this, 'updateChart'))
             );
 
             this.inherited(arguments);
@@ -93,11 +89,10 @@ define([
             // }
             console.log('app.charts.ChartContainer:updateChart', arguments);
 
-            if (!this.currentQuery || '') {
-                topic.publish(config.topics.toast, 'You must add at least one filter.');
-                this.controls.resetSpinner();
+            if (!this.checkForCurrentQuery()) {
                 return;
             }
+
             var query = this.convertToResultsQuery(this.currentQuery) + ' AND Param = \'' + evt.param + '\'';
 
             if (!this.gp) {
@@ -113,7 +108,7 @@ define([
                 chartType = evt.chartType;
             }
 
-            this.gp.execute({
+            this.submitJob({
                 defQuery: query,
                 chartType: chartType,
                 logTransform: logTransform
@@ -122,34 +117,32 @@ define([
             this.currentChartType = chartType;
             this.currentParam = evt.param;
         },
-        initGP: function (url) {
+        onJobComplete: function (result) {
             // summary:
-            //      set up geoprocessor
-            console.log('app/charts/ChartContainer:initGP', arguments);
+            //      Callback for gp.submitJob
+            // result: Response Object
+            console.log('app.charts.ChartContainer:onJobComplete', arguments);
 
             var that = this;
-            this.gp = new Geoprocessor(url);
-            this.own(
-                this.gp.on('error', function () {
-                    topic.publish(config.topics.toast, {
-                        message: 'error with chart service',
-                        type: 'danger'
-                    });
-                    that.controls.resetSpinner();
-                }),
-                this.gp.on('execute-complete', lang.hitch(this, 'onChartGPComplete'))
-            );
+            var getData = function (parameter) {
+                return that.gp.getResultData(result.jobInfo.jobId, parameter);
+            };
+            all({
+                data: getData('data'),
+                numResults: getData('numResults'),
+                numStations: getData('numStations')
+            }).then(lang.hitch(this, 'onChartGPComplete'));
         },
-        onChartGPComplete: function (evt) {
+        onChartGPComplete: function (results) {
             // summary:
             //      callback for gp task
-            // evt: Event Object
+            // results: Object
             console.log('app.charts.ChartContainer:onChartGPComplete', arguments);
 
             this.controls.resetSpinner();
-            var data = evt.results[0].value;
-            var numResults = evt.results[1].value;
-            var numStations = evt.results[2].value;
+            var data = results.data.value;
+            var numResults = results.numResults.value;
+            var numStations = results.numStations.value;
             this.updateMsg(numResults, numStations);
 
             var chartType;

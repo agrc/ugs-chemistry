@@ -8,14 +8,14 @@
                 <a href="#results" data-toggle="tab">Results</a>
             </li>
             <li>
-                <button type='button' class='btn btn-link disabled' disabled>Download </button>
+                <a href='#download' data-toggle='tab'>Download</a>
             </li>
             <li data-dojo-attach-point='clearSelectionBtnContainer' class='pull-right hidden'>
                 <button type='button' class='btn btn-info btn-sm'
                     data-dojo-attach-event='click: clearSelection'>
                         Clear Selected Station
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
             </li>
         </ul>
 
@@ -25,6 +25,9 @@
             </div>
             <div id='results' class="tab-pane fade">
                 <div data-dojo-attach-point="resultsGridDiv"></div>
+            </div>
+            <div id="download" class="tab-pane fade">
+                <div data-dojo-attach-point="downloadDiv"></div>
             </div>
         </div>
     </div>
