@@ -2,7 +2,7 @@
     "application": {
         "name": "ugschemistry",
         "description": "The Utah Water Chemistry Database",
-        "baseUrl": "<path to application>",
+        "baseUrl": "<path to application(ending /)>",
         "adminPage": "user_admin.html"
     },
     "adminEmails": ["<admin emails>"],
