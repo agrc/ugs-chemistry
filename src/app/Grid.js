@@ -5,6 +5,7 @@ define([
     'app/_ResultsQueryMixin',
 
     'dgrid/extensions/ColumnResizer',
+    'dgrid/extensions/DijitRegistry',
     'dgrid/OnDemandGrid',
 
     'dijit/_TemplatedMixin',
@@ -27,6 +28,7 @@ define([
     _ResultsQueryMixin,
 
     ColumnResizer,
+    DijitRegistry,
     Grid,
 
     _TemplatedMixin,
@@ -127,6 +129,7 @@ define([
                 if (!this.stationsGrid) {
                     this.initStationsGrid();
                 }
+                this.stationsGrid.resize();
                 if (!this.stationsGrid.collection ||
                     (this.stationsGrid.collection && this.stationsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
@@ -149,6 +152,7 @@ define([
                 if (!this.resultsGrid) {
                     this.initResultsGrid();
                 }
+                this.resultsGrid.resize();
                 defQuery = this.convertToResultsQuery(defQuery);
                 if (!this.resultsGrid.collection ||
                     (this.resultsGrid.collection && this.resultsGrid.collection.where !== defQuery)) {
@@ -257,7 +261,7 @@ define([
             // columns: Object[]
             console.log('app/Grid:buildGrid', arguments);
 
-            var grid = new (declare([Grid, ColumnResizer]))({
+            var grid = new (declare([Grid, ColumnResizer, DijitRegistry]))({
                 columns: columns,
                 noDataMessage: 'No data found.',
                 loadingMessage: 'Loading data...',
