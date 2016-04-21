@@ -104,12 +104,15 @@ define([
             var that = this;
             var mapServiceUrl;
             var fLayerUrl;
+            var queryFLayerUrl;
             if (securityLevel === this.securityLevels.open) {
                 mapServiceUrl = config.urls.mapService;
                 fLayerUrl = config.urls.mapService;
+                queryFLayerUrl = config.urls.mapService + '/' + config.layerIndices.main;
             } else {
                 mapServiceUrl = config.urls.secureMapService + '?token=' + config.user.token;
                 fLayerUrl = config.urls.secureMapService;
+                queryFLayerUrl = config.urls.secureMapService + '/' + config.layerIndices.main + '?token=' + config.user.token;
             }
 
             if (this.layerEventHandlers.length > 0) {
@@ -137,7 +140,7 @@ define([
             this.map.addLayer(this.fLayer);
             this.map.addLoaderToLayer(this.fLayer);
 
-            this.queryFLayer = new FeatureLayer(mapServiceUrl + '/' + config.layerIndices.main);
+            this.queryFLayer = new FeatureLayer(queryFLayerUrl);
             this.layerEventHandlers.push(
                 this.queryFLayer.on('query-ids-complete', lang.hitch(this, 'queryIdsComplete'))
             );
