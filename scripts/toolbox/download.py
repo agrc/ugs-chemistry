@@ -49,9 +49,10 @@ def main(secure=False):
 
     if format == 'kml':
         print('making layer')
-        stationsLayer = arcpy.MakeFeatureLayer_management(stationsFCName,
-                                                          'stationsLyr',
-                                                          stationsQuery)
+        stationsLayer = arcpy.mapping.Layer(secrets.LAYER_FILE)
+        stationsLayer.setSelectionSet('NEW', ids)
+        stationsLayer.definitionQuery = stationsQuery
+
         print('exporting to kml')
         stationsOutput = arcpy.LayerToKML_conversion(stationsLayer,
                                                      arcpy.env.scratchFolder + '\\' + 'Stations.kmz')
