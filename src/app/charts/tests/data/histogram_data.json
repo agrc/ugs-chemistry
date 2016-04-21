@@ -1,22 +1,18 @@
 {
-    "results": [{
-        "paramName": "data",
-        "dataType": "GPString",
+    "data": {
         "value": [
             [1029, 111, 27, 6, 4, 6, 7, 0, 1, 1],
             [0.0, 6.15325601293, 12.30651202586, 18.45976803879, 24.61302405172, 30.76628006465,
                 36.91953607758, 43.07279209051, 49.22604810344, 55.37930411637, 61.5325601293
             ]
         ]
-    }, {
-        "paramName": "numResults",
-        "dataType": "GPLong",
+    },
+    "numResults": {
         "value": 1192
-    }, {
-        "paramName": "numStations",
-        "dataType": "GPLong",
+    },
+    "numStations": {
         "value": 146
-    }],
+    },
     "messages": [{
         "type": "esriJobMessageTypeInformative",
         "description": "Executing (BuildChart): BuildChart \"StationId IN (SELECT StationId FROM Stations WHERE CountyCode IN (49011)) AND Param = 'Nitrate'\" histogram"
