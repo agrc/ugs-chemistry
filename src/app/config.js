@@ -1,6 +1,7 @@
 /* jshint maxlen:false */
 define([
     'dojo/has',
+    'dojo/request/xhr',
 
     'esri/Color',
     'esri/config',
@@ -11,6 +12,7 @@ define([
     'dojo/domReady!'
 ], function (
     has,
+    xhr,
 
     Color,
     esriConfig,
@@ -23,17 +25,20 @@ define([
     esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
 
     var agsDomain;
+    var apiKey;
+    var quadWord;
     if (has('agrc-build') === 'prod') {
         // mapserv.utah.gov
-        // apiKey = 'AGRC-1B07B497348512';
+        apiKey = 'AGRC-A94B063C533889';
         agsDomain = 'mapserv.utah.gov';
+        quadWord = 'alfred-plaster-crystal-dexter';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
-        // apiKey = 'AGRC-AC122FA9671436';
         agsDomain = 'test.mapserv.utah.gov';
+        apiKey = 'AGRC-AC122FA9671436';
+        quadWord = 'opera-event-little-pinball';
     } else {
         // localhost
-        // apiKey = 'AGRC-E5B94F99865799';
         agsDomain = window.location.host;
     }
 
@@ -63,7 +68,11 @@ define([
 
         // apiKey: String
         //      The api key used for services on api.mapserv.utah.gov
-        apiKey: '', // acquire at developer.mapserv.utah.gov
+        apiKey: apiKey, // acquire at developer.mapserv.utah.gov
+
+        // quadWord: String
+        //      For use with discover services
+        quadWord: quadWord,
 
         urls: {
             baseUrl: baseUrl,
@@ -212,16 +221,15 @@ define([
         chartMsgTxt: 'Showing ${0} results from ${1} stations.'
     };
 
-    if (has('agrc-build') === 'prod') {
-        // mapserv.utah.gov
-        window.AGRC.apiKey = 'AGRC-A94B063C533889';
-    } else if (has('agrc-build') === 'stage') {
-        // test.mapserv.utah.gov
-        window.AGRC.apiKey = 'AGRC-AC122FA9671436';
-    } else {
-        // localhost
-        window.AGRC.apiKey = 'AGRC-E5B94F99865799';
-    }
+    xhr(require.baseUrl + 'secrets.json', {
+        handleAs: 'json',
+        sync: true
+    }).then(function (secrets) {
+        window.AGRC.quadWord = secrets.quadWord;
+        window.AGRC.apiKey = secrets.apiKey;
+    }, function () {
+        throw 'Error getting secrets!';
+    });
 
     return window.AGRC;
 });

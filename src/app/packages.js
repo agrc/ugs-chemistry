@@ -11,6 +11,7 @@
             'dstore',
             'esri',
             'ijit',
+            'layer-selector',
             'moment',
             'put-selector',
             'toaster',

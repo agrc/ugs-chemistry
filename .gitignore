@@ -32,6 +32,7 @@ src/jasmine-favicon-reporter/
 src/jasmine-jsreporter/
 src/jquery/
 src/ladda-bootstrap/
+src/layer-selector/
 src/moment/
 src/mustache/
 src/proj4/

@@ -9,13 +9,16 @@ define([
     'dojo/_base/lang',
 
     'esri/Color',
+    'esri/geometry/Extent',
     'esri/graphic',
     'esri/layers/ArcGISDynamicMapServiceLayer',
     'esri/layers/FeatureLayer',
     'esri/tasks/IdentifyParameters',
     'esri/tasks/IdentifyTask',
     'esri/tasks/query',
-    'esri/tasks/QueryTask'
+    'esri/tasks/QueryTask',
+
+    'layer-selector/LayerSelector'
 ], function (
     BaseMap,
 
@@ -27,13 +30,16 @@ define([
     lang,
 
     Color,
+    Extent,
     Graphic,
     ArcGISDynamicMapServiceLayer,
     FeatureLayer,
     IdentifyParameters,
     IdentifyTask,
     Query,
-    QueryTask
+    QueryTask,
+
+    LayerSelector
 ) {
     return {
         // map: BaseMap
@@ -76,8 +82,23 @@ define([
             var that = this;
 
             this.map = new BaseMap(mapDiv, {
-                defaultBaseMap: 'Terrain'
+                useDefaultBaseMap: false,
+                extent: new Extent({
+                    xmax: -11762120.612131765,
+                    xmin: -13074391.513731329,
+                    ymax: 5225035.106177688,
+                    ymin: 4373832.359194187,
+                    spatialReference: {
+                        wkid: 3857
+                    }
+                })
             });
+            var ls = new LayerSelector({
+                map: this.map,
+                quadWord: config.quadWord,
+                baseLayers: ['Terrain', 'Hybrid']
+            });
+            ls.startup();
 
             this.initLayers(securityLevel);
 
