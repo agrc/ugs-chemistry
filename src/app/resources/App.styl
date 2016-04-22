@@ -84,8 +84,13 @@ html,
         // fix tooltip collision with bootstrap
         .tooltip
             opacity: 1
-        .layer-selector-top
-            top: 50px
+        .layer-selector
+            &.layer-selector-top
+                top: 50px
+            box-shadow: none
+            border: 1px solid $border-color
+        .chart-container>.btn
+            border-color: $border-color
 
     /* GRID */
     [data-dojo-attach-point='gridContainer']
