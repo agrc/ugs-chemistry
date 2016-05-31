@@ -99,14 +99,15 @@ define([
                 map: this.map,
                 quadWord: config.quadWord,
                 baseLayers: [
-                'Hybrid',
-                'Terrain',
-                'Topo',
-                {
-                    url: config.urls.esriStreets,
-                    Factory: ArcGISTiledMapServiceLayer,
-                    id: 'ESRI Streets'
-                }]
+                    {
+                        url: config.urls.esriStreets,
+                        Factory: ArcGISTiledMapServiceLayer,
+                        id: 'ESRI Streets'
+                    },
+                    'Hybrid',
+                    'Terrain',
+                    'Topo'
+                ]
             });
             ls.startup();
 
