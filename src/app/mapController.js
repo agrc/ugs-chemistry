@@ -12,6 +12,7 @@ define([
     'esri/geometry/Extent',
     'esri/graphic',
     'esri/layers/ArcGISDynamicMapServiceLayer',
+    'esri/layers/ArcGISTiledMapServiceLayer',
     'esri/layers/FeatureLayer',
     'esri/tasks/IdentifyParameters',
     'esri/tasks/IdentifyTask',
@@ -33,6 +34,7 @@ define([
     Extent,
     Graphic,
     ArcGISDynamicMapServiceLayer,
+    ArcGISTiledMapServiceLayer,
     FeatureLayer,
     IdentifyParameters,
     IdentifyTask,
@@ -96,7 +98,15 @@ define([
             var ls = new LayerSelector({
                 map: this.map,
                 quadWord: config.quadWord,
-                baseLayers: ['Terrain', 'Hybrid']
+                baseLayers: [
+                'Hybrid',
+                'Terrain',
+                'Topo',
+                {
+                    url: config.urls.esriStreets,
+                    Factory: ArcGISTiledMapServiceLayer,
+                    id: 'ESRI Streets'
+                }]
             });
             ls.startup();
 

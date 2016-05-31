@@ -82,7 +82,8 @@ define([
             buildChart: baseUrl + '/Toolbox/GPServer/BuildChart',
             secureBuildChart: baseUrl + '/ToolboxSecure/GPServer/BuildChartSecure',
             download: baseUrl + '/Toolbox/GPServer/Download',
-            secureDownload: baseUrl + '/ToolboxSecure/GPServer/DownloadSecure'
+            secureDownload: baseUrl + '/ToolboxSecure/GPServer/DownloadSecure',
+            esriStreets: '//server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
         },
 
         minFeatureLayerScale: 500000,
