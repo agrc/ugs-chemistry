@@ -59,8 +59,8 @@ define([
             //      description
             console.log('app/filters/DateFilter:clear', arguments);
 
-            this.fromDate.value = '';
-            this.toDate.value = '';
+            this.fromDate.reset();
+            this.toDate.reset();
             domClass.add(this.numSpan, 'hidden');
 
             this.emit('changed');
@@ -88,8 +88,8 @@ define([
             //      checks to make sure that there are valid dates
             console.log('app/filters/DateFilter:isValid', arguments);
 
-            return !isNaN(this.fromDate.value.getTime()) &&
-                !isNaN(this.toDate.value.getTime());
+            return (this.fromDate.value !== null && !isNaN(this.fromDate.value.getTime())) &&
+                (this.toDate.value !== null && !isNaN(this.toDate.value.getTime()));
         },
         getQuery: function () {
             // summary:

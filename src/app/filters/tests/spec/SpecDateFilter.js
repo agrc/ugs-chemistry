@@ -47,5 +47,11 @@ require([
                 expect(widget.getQuery()).toBeUndefined();
             });
         });
+        describe('isValid', function () {
+            it('works with no values', function () {
+                widget.clear();
+                expect(widget.isValid()).toBe(false);
+            });
+        });
     });
 });
