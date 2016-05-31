@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "dojo": "^1.10",
-    "grunt": "^0.4",
+    "grunt": "^1",
     "grunt-arcgis-press": "^0.2.0",
     "grunt-bump": "^0",
     "grunt-contrib-clean": "^1.0.0",
