@@ -27,11 +27,13 @@ define([
     var agsDomain;
     var apiKey;
     var quadWord;
+    var servicesFolder = 'UGSChemistry';
     if (has('agrc-build') === 'prod') {
         // mapserv.utah.gov
         apiKey = 'AGRC-A94B063C533889';
         agsDomain = 'mapserv.utah.gov';
         quadWord = 'alfred-plaster-crystal-dexter';
+        servicesFolder = 'Water';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
         agsDomain = 'test.mapserv.utah.gov';
@@ -42,7 +44,7 @@ define([
         agsDomain = window.location.host;
     }
 
-    var baseUrl = window.location.protocol + '//' + agsDomain + '/arcgis/rest/services/UGSChemistry';
+    var baseUrl = window.location.protocol + '//' + agsDomain + '/arcgis/rest/services/' + servicesFolder;
     var drawingColor = [51, 160, 44];
     var selectionColor = [52, 208, 231];
     var StationId = 'StationId';
