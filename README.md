@@ -7,11 +7,14 @@ ugs-chemistry
 Water Chemistry data viewer built for UGS
 
 ### URL's
-[test.mapserv.utah.gov/ugschemistry](http://test.mapserv.utah.gov/ugschemistry)
+Production: [geology.utah.gov/apps/waterchem](http://geology.utah.gov/apps/waterchem)
+
+Test: [test.mapserv.utah.gov/ugschemistry](http://test.mapserv.utah.gov/ugschemistry)
+
 [current mockup](http://share.flairbuilder.com/?sid=I64FYv95R7)
 
 ### Installation
-All services go into a folder called `UGSChemistry`.
+All services go into a folder called `UGSChemistry`(stage & dev) or `Water`(prod).
 
 Publish `scripts/toolbox/Toolbox.tbx/BuildChart` & `Download` to `/Toolbox`
 - update secrets.py to point to the correct server
@@ -25,7 +28,9 @@ Publish `scripts/toolbox/Toolbox.tbx/BuildChartSecure` and `DownloadSecure` to `
 
 If you have trouble with broken data source errors when publishing try deleting the service draft and restarting Catalog.
 
-Publish `maps/MapService.mxd` to `/MapService`
+Publish `maps/MapService.mxd` to `/MapService` and `maps/SecureMapService.mxd` to `/SecureMapService`.
+- Max pooling = 5
+- Max records returned = 5000
 
 ### Contacts
 **Paul Inkenbrandt**

@@ -29,13 +29,11 @@ define([
     var quadWord;
     var servicesFolder = 'UGSChemistry';
     if (has('agrc-build') === 'prod') {
-        // mapserv.utah.gov
-        apiKey = 'AGRC-A94B063C533889';
-        agsDomain = 'mapserv.utah.gov';
-        quadWord = 'alfred-plaster-crystal-dexter';
+        apiKey = 'AGRC-78940522976389';
+        agsDomain = 'maps.geology.utah.gov';
+        quadWord = 'complex-salary-gram-spain';
         servicesFolder = 'Water';
     } else if (has('agrc-build') === 'stage') {
-        // test.mapserv.utah.gov
         agsDomain = 'test.mapserv.utah.gov';
         apiKey = 'AGRC-AC122FA9671436';
         quadWord = 'opera-event-little-pinball';
