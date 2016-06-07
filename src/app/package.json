@@ -1,6 +1,6 @@
 {
     "name": "ugs-chemistry.app",
-    "version": "1.0.0-3",
+    "version": "1.0.0-4",
     "main": "main",
     "description": "UGS Water Chemistry Application",
     "homepage": "https://github.com/agrc/ugs-chemistry",

@@ -61,7 +61,7 @@ define([
 
         // version.: String
         //      The version number.
-        version: '1.0.0-3',
+        version: '1.0.0-4',
 
         // user: Object
         //      Permission proxy user object
