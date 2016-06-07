@@ -33,6 +33,7 @@ define([
         agsDomain = 'maps.geology.utah.gov';
         quadWord = 'complex-salary-gram-spain';
         servicesFolder = 'Water';
+        esriConfig.defaults.io.corsEnabledServers.push(agsDomain);
     } else if (has('agrc-build') === 'stage') {
         agsDomain = 'test.mapserv.utah.gov';
         apiKey = 'AGRC-AC122FA9671436';
