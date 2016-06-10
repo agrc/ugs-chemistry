@@ -1,6 +1,6 @@
 {
   "name": "ugs-chemistry",
-  "version": "1.0.0-4",
+  "version": "1.0.0-5",
   "dependencies": {
     "agrc": "agrc-widgets#4.1",
     "agrc-jasmine-matchers": "~0.1.0",
