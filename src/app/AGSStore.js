@@ -89,7 +89,8 @@ define([
                     data: lang.mixin({
                         returnCountOnly: true
                     }, this.params),
-                    handleAs: 'json'
+                    handleAs: 'json',
+                    headers: {'X-Requested-With': ''}
                 }), function (response) {
                     return response.count;
                 }),
@@ -101,7 +102,7 @@ define([
             kwArgs = kwArgs || {};
 
             // perform the actual query
-            var headers = lang.delegate(this.headers, { Accept: this.accepts });
+            var headers = lang.delegate(this.headers, { Accept: this.accepts, 'X-Requested-With': ''});
 
             if ('headers' in kwArgs) {
                 lang.mixin(headers, kwArgs.headers);
