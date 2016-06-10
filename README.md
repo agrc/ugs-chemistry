@@ -32,6 +32,10 @@ Publish `maps/MapService.mxd` to `/MapService` and `maps/SecureMapService.mxd` t
 - Max pooling = 5
 - Max records returned = 5000
 
+#### Dependencies
+- [agrc/PermissionProxy](https://github.com/agrc/ArcGisServerPermissionsProxy)
+- [pymssql](http://www.pymssql.org/en/latest/)
+
 ### Contacts
 **Paul Inkenbrandt**
 paulinkenbrandt@utah.gov
