@@ -8,7 +8,7 @@
     "dgrid": "~1.0",
     "dgrid03": "dgrid#~0.3.0",
     "esri": "arcgis-js-api#~3.16.0",
-    "ijit": "agrc-ijit#~3.1",
+    "ijit": "agrc-ijit#ugs-customizations",
     "jasmine-favicon-reporter": "*",
     "jasmine-jsreporter": "~0.1.2",
     "put-selector": "~0.3.6",
