@@ -21,6 +21,7 @@ Publish `scripts/toolbox/Toolbox.tbx/BuildChart` & `Download` to `/Toolbox`
 - asynchronous
 - install `pymssql` by running `pip install scripts/charts/pymssql-2.1.2-cp27-cp27m-win_amd64.whl` (Got the wheels from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pymssql))
 - Defaults values should be sufficient to successfully run the tools.
+- May need to manually copy `scripts/toolbox/database_connections/` to `...\arcgisserver\directories\arcgissystem\arcgisinput\UGSChemistry(or Water)\ToolboxSecure.GPServer\extracted\v101\toolbox` & `...\arcgisserver\directories\arcgissystem\arcgisinput\UGSChemistry(or Water)\Toolbox.GPServer\extracted\v101\toolbox`
 
 Publish `scripts/toolbox/Toolbox.tbx/BuildChartSecure` and `DownloadSecure` to `/ToolboxSecure`
 - same params as above only lock down to ugs roles
