@@ -148,6 +148,10 @@ define([
                 f.on('changed', lang.hitch(that, 'onFilterChange'));
             });
 
+            this.own(topic.subscribe(config.topics.showLimitMessage, function () {
+                domClass.remove(this.limitWarning, 'hidden');
+            }.bind(this)));
+
             this.inherited(arguments);
         },
         updateOptionVisibility: function (id, visible) {
@@ -215,6 +219,8 @@ define([
             });
             var where = (wheres.length) ? wheres.join(' AND ') : undefined;
             topic.publish(config.topics.filterFeatures, where, geo);
+
+            domClass.add(this.limitWarning, 'hidden');
         }
     });
 });

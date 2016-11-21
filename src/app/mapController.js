@@ -254,22 +254,54 @@ define([
 
             if (defQuery || geometry) {
                 this.map.showLoader();
-                if (geometry) {
-                    // only query for ids if there is a geometry
-                    var query = new Query();
-                    if (defQuery) {
-                        query.where = defQuery;
-                    }
+
+                this.checkLimit(defQuery, geometry).then(function continueQuery(query) {
                     if (geometry) {
-                        query.geometry = geometry;
+                        // only query for ids if there is a geometry
+                        this.queryFLayer.queryIds(query);
+                    } else {
+                        this.updateLayerDefs(defQuery);
                     }
-                    this.queryFLayer.queryIds(query);
-                } else {
-                    this.updateLayerDefs(defQuery);
-                }
+                }.bind(this), function onError() {
+                    topic.publish(config.topics.showLimitMessage);
+                    this.updateLayerDefs('1 = 2');
+                    this.map.hideLoader();
+                }.bind(this));
             } else {
                 this.updateLayerDefs('1 = 1');
             }
+        },
+        checkLimit: function (defQuery, geometry) {
+            // summary:
+            //      checks to see if the filtered results are more than the limit
+            // defQuery[optional]: String
+            //      select by definition query
+            // geometry[optional]: Polygon
+            //      select by geometry
+            // returns: Promise
+            //      resolves with the query if the limit was not exceeded, otherwise rejects
+            console.log('app/mapController:checkLimit', arguments);
+
+            var query = new Query();
+            if (defQuery) {
+                query.where = defQuery;
+            }
+            if (geometry) {
+                query.geometry = geometry;
+            }
+
+            var def = new Deferred();
+
+            this.queryFLayer.queryCount(query).then(function checkLimit(count) {
+                if (count > config.stationsDisplayLimit) {
+                    def.reject();
+                } else {
+                    console.log('feature count: ', count);
+                    def.resolve(query);
+                }
+            }.bind(this));
+
+            return def.promise;
         },
         queryIdsComplete: function (response) {
             // summary:

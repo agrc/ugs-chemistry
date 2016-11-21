@@ -75,6 +75,10 @@ define([
         //      For use with discover services
         quadWord: quadWord,
 
+        // stationsDisplayLimit: Number
+        //      The max number of stations that the app will display
+        stationsDisplayLimit: 3000,
+
         urls: {
             baseUrl: baseUrl,
             mapService: baseUrl + '/MapService/MapServer',
@@ -139,7 +143,8 @@ define([
             toggleGrid: 'ugs-toggle-grid',
             toast: 'ugs-toast',
             pauseMapClick: 'ugs-pause-map-click',
-            resumeMapClick: 'ugs-resume-map-click'
+            resumeMapClick: 'ugs-resume-map-click',
+            showLimitMessage: 'ugs-show-limit-message'
         },
 
         counties: [
