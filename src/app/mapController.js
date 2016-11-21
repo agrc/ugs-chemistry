@@ -230,7 +230,7 @@ define([
                 this.map.graphics.clear();
             }
             this.selectedStationId = null;
-            this.updateLayerDefs(this.fLayer.getDefinitionExpression() || '1 = 1');
+            this.updateLayerDefs(this.fLayer.getDefinitionExpression() || config.showAllQuery);
         },
         selectStation: function (feature) {
             // summary:
@@ -240,7 +240,7 @@ define([
 
             this.map.graphics.add(new Graphic(feature.geometry, config.selectionSymbol));
             this.selectedStationId = feature.attributes[config.fieldNames.Id];
-            this.updateLayerDefs(this.fLayer.getDefinitionExpression() || '1 = 1');
+            this.updateLayerDefs(this.fLayer.getDefinitionExpression() || config.showAllQuery);
         },
         filterFeatures: function (defQuery, geometry) {
             // summary:
@@ -268,7 +268,7 @@ define([
                     this.map.hideLoader();
                 }.bind(this));
             } else {
-                this.updateLayerDefs('1 = 1');
+                this.updateLayerDefs(config.showAllQuery);
             }
         },
         checkLimit: function (defQuery, geometry) {
@@ -331,7 +331,7 @@ define([
             this.dLayer.setLayerDefinitions(defs);
 
             var gridDef;
-            if (def === '1 = 1') {
+            if (def === config.showAllQuery) {
                 // display no results in grid if showing all stations on map
                 gridDef = '1 = 2';
             } else {
@@ -350,7 +350,7 @@ define([
             var q = new Query();
             q.returnGeometry = false;
             q.outFields = [config.fieldNames.Param];
-            q.where = '1 = 1';
+            q.where = config.showAllQuery;
 
             var qt = new QueryTask(config.urls.mapService + '/' + config.layerIndices.parameters);
 

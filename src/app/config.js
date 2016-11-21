@@ -127,6 +127,7 @@ define([
         },
 
         queryByResults: StationId + " IN (SELECT " + StationId + " FROM ugswaterchemistry.Results WHERE ",
+        showAllQuery: '1 = 1',
 
         layerIndices: {
             main: 0,
