@@ -330,8 +330,14 @@ define([
             defs[config.layerIndices.main] = def;
             this.dLayer.setLayerDefinitions(defs);
 
-            var gridDef = (this.selectedStationId) ?
-                def + ' AND ' + config.fieldNames.Id + ' = ' + this.selectedStationId : def;
+            var gridDef;
+            if (def === '1 = 1') {
+                // display no results in grid if showing all stations on map
+                gridDef = '1 = 2';
+            } else {
+                gridDef = (this.selectedStationId) ?
+                    def + ' AND ' + config.fieldNames.Id + ' = ' + this.selectedStationId : def;
+            }
 
             topic.publish(config.topics.queryIdsComplete, gridDef);
         },
