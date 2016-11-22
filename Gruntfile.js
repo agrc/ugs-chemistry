@@ -263,14 +263,6 @@ module.exports = function (grunt) {
                     host: '<%= secrets.stageHost %>'
                 }
             },
-            prod: {
-                files: {
-                    './': 'deploy/deploy.zip'
-                },
-                options: {
-                    host: '<%= secrets.prodHost %>'
-                }
-            },
             options: {
                 path: './' + deployDir + '/',
                 srcBasePath: 'deploy/',
