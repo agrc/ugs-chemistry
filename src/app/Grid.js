@@ -153,9 +153,9 @@ define([
                     this.initResultsGrid();
                 }
                 this.resultsGrid.resize();
-                defQuery = this.convertToResultsQuery(defQuery);
+                var resultsQuery = this.convertToResultsQuery(defQuery);
                 if (!this.resultsGrid.collection ||
-                    (this.resultsGrid.collection && this.resultsGrid.collection.where !== defQuery)) {
+                    (this.resultsGrid.collection && this.resultsGrid.collection.where !== resultsQuery)) {
                     store = new AGSStore({
                         target: this.mapServiceUrl + '/' + config.layerIndices.results,
                         idProperty: 'Id',
@@ -168,7 +168,7 @@ define([
                             fn.StationId,
                             fn.DetectCond
                         ],
-                        where: defQuery
+                        where: resultsQuery
                     });
                     this.resultsGrid.set('collection', store);
                 }
