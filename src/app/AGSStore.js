@@ -54,7 +54,8 @@ define([
                 returnGeometry: false,
                 outFields: outFields,
                 where: options.where || '1=1',
-                token: (config.user) ? config.user.token : null
+                token: (config.user) ? config.user.token : null,
+                orderByFields: options.idProperty
             };
             this.target += '/query';
 

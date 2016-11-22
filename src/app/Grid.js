@@ -134,7 +134,7 @@ define([
                     (this.stationsGrid.collection && this.stationsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
                         target: this.mapServiceUrl + '/' + config.layerIndices.main,
-                        idProperty: 'Id',
+                        idProperty: config.fieldNames.Id,
                         outFields: [
                             fn.Id,
                             fn.DataSource,
@@ -158,7 +158,7 @@ define([
                     (this.resultsGrid.collection && this.resultsGrid.collection.where !== resultsQuery)) {
                     store = new AGSStore({
                         target: this.mapServiceUrl + '/' + config.layerIndices.results,
-                        idProperty: 'Id',
+                        idProperty: config.fieldNames.Id,
                         outFields: [
                             fn.Id,
                             fn.Param,
