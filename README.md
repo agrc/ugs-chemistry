@@ -32,6 +32,7 @@ If you have trouble with broken data source errors when publishing try deleting 
 Publish `maps/MapService.mxd` to `/MapService` and `maps/SecureMapService.mxd` to `/SecureMapService`.
 - Max pooling = 5
 - Max records returned = 5000
+- Check "Allow per request modification of layer order and symbology" and register the SDE database as a dynamic workspace with the an ID of "UGSWaterChemistry".
 
 #### Dependencies
 - [agrc/PermissionProxy](https://github.com/agrc/ArcGisServerPermissionsProxy)

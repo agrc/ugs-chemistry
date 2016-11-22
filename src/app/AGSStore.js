@@ -23,7 +23,7 @@ define([
 ) {
     return declare([Request], {
         // description
-        //      A dstore/Store implementation for querying a arcgis server query service
+        //      A dstore/Store implementation for querying a arcgis server dynamic layer query service
 
         rangeStartParam: 'resultOffset',
         rangeCountParam: 'resultRecordCount',
@@ -36,28 +36,36 @@ define([
             //      idProperty: String
             //      outFields: String[] (defaults to '*')
             //      returnGeometry: Boolean (defaults to false)
-            //      where: String (defaults to 1=1)
+            //      where: String
             // }
             console.log('app.AGSStore:constructor', arguments);
 
             // initialize options
-            var outFields;
-            if (options.outFields) {
-                outFields = options.outFields.join(',');
-            } else {
-                outFields = '*';
-            }
+            var joinedOutFields = options.outFields.join(',');
+            var query = 'SELECT ' + joinedOutFields + ' FROM ' + options.tableName + ' WHERE ' + options.where;
 
             // push options to url query and build url
+            // this is using a dynamic layer so that the query can be more specific (prevents a full table scan)
             this.params = {
                 f: 'json',
+                layer: JSON.stringify({
+                    id: options.id,
+                    source: {
+                        type: 'dataLayer',
+                        dataSource: {
+                            type: 'queryTable',
+                            workspaceId: config.dynamicWorkspaceId,
+                            query: query,
+                            oidFields: options.idProperty
+                        }
+                    }
+                }),
+                outFields: joinedOutFields,
+                where: '1 = 1',
                 returnGeometry: false,
-                outFields: outFields,
-                where: options.where || '1=1',
                 token: (config.user) ? config.user.token : null,
                 orderByFields: options.idProperty
             };
-            this.target += '/query';
 
             this.inherited(arguments);
         },
@@ -103,7 +111,7 @@ define([
             kwArgs = kwArgs || {};
 
             // perform the actual query
-            var headers = lang.delegate(this.headers, { Accept: this.accepts, 'X-Requested-With': ''});
+            var headers = lang.delegate(this.headers, {Accept: this.accepts, 'X-Requested-With': ''});
 
             if ('headers' in kwArgs) {
                 lang.mixin(headers, kwArgs.headers);

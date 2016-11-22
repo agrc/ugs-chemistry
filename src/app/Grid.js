@@ -125,6 +125,10 @@ define([
                 'hidden',
                 defQuery.indexOf(config.fieldNames.Id + ' = ') === -1
             );
+
+            // store this before it possible gets mutated by convertToResultsQuery
+            this.lastDefQuery = defQuery;
+
             if (domClass.contains(this.stationsTab, 'active')) {
                 if (!this.stationsGrid) {
                     this.initStationsGrid();
@@ -133,7 +137,8 @@ define([
                 if (!this.stationsGrid.collection ||
                     (this.stationsGrid.collection && this.stationsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
-                        target: this.mapServiceUrl + '/' + config.layerIndices.main,
+                        target: this.mapServiceUrl + '/dynamicLayer/query',
+                        tableName: 'Stations',
                         idProperty: config.fieldNames.Id,
                         outFields: [
                             fn.Id,
@@ -144,7 +149,8 @@ define([
                             fn.Depth,
                             fn.WIN
                         ],
-                        where: defQuery
+                        where: defQuery,
+                        id: 0
                     });
                     this.stationsGrid.set('collection', store);
                 }
@@ -153,11 +159,12 @@ define([
                     this.initResultsGrid();
                 }
                 this.resultsGrid.resize();
-                var resultsQuery = this.convertToResultsQuery(defQuery);
+                defQuery = this.convertToResultsQuery(defQuery);
                 if (!this.resultsGrid.collection ||
-                    (this.resultsGrid.collection && this.resultsGrid.collection.where !== resultsQuery)) {
+                    (this.resultsGrid.collection && this.resultsGrid.collection.where !== defQuery)) {
                     store = new AGSStore({
-                        target: this.mapServiceUrl + '/' + config.layerIndices.results,
+                        target: this.mapServiceUrl + '/dynamicLayer/query',
+                        tableName: 'Results',
                         idProperty: config.fieldNames.Id,
                         outFields: [
                             fn.Id,
@@ -168,12 +175,12 @@ define([
                             fn.StationId,
                             fn.DetectCond
                         ],
-                        where: resultsQuery
+                        where: defQuery,
+                        id: 1
                     });
                     this.resultsGrid.set('collection', store);
                 }
             }
-            this.lastDefQuery = defQuery;
 
             return defQuery; // for testing only
         },

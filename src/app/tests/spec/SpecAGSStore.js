@@ -6,7 +6,9 @@ require([
     describe('app/AGSStore', function () {
         var obj;
         beforeEach(function () {
-            obj = new AGSStore({});
+            obj = new AGSStore({
+                outFields: ['Id', 'Two']
+            });
         });
 
         describe('Sanity', function () {
