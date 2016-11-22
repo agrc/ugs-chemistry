@@ -42,7 +42,7 @@ define([
 
             // initialize options
             var joinedOutFields = options.outFields.join(',');
-            var query = 'SELECT ' + joinedOutFields + ' FROM ' + options.tableName + ' WHERE ' + options.where;
+            var query = 'SELECT ' + joinedOutFields + ' FROM ugswaterchemistry.' + options.tableName + ' WHERE ' + options.where;
 
             // push options to url query and build url
             // this is using a dynamic layer so that the query can be more specific (prevents a full table scan)
