@@ -59,6 +59,11 @@ define([
         //      for permissions proxy
         appName: 'ugschemistry',
 
+        agsDomain: agsDomain,
+
+        // dynamicWorkspaceId: String
+        dynamicWorkspaceId: 'UGSWaterChemistry',
+
         // version.: String
         //      The version number.
         version: '1.1.0-0',
