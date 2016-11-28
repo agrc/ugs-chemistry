@@ -39,8 +39,10 @@ Publish `maps/MapService.mxd` to `/MapService` and `maps/SecureMapService.mxd` t
 - [pymssql](http://www.pymssql.org/en/latest/)
 
 ### Contacts
-**Paul Inkenbrandt**
-paulinkenbrandt@utah.gov
+**Paul Inkenbrandt**  
+paulinkenbrandt@utah.gov  
+**Marshall Robinson (Server Admin)**  
+marshallrobinson@utah.gov  
 
 ### Information from Paul
 [**SOW**](https://docs.google.com/a/utah.gov/document/d/1Vc6JsHJuqKI29NZRqGk_JSLdM3AWy2lI9_D1vqEp9iE/edit)
