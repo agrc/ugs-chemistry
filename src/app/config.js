@@ -82,7 +82,7 @@ define([
 
         // stationsDisplayLimit: Number
         //      The max number of stations that the app will display
-        stationsDisplayLimit: 3000,
+        stationsDisplayLimit: 1000,
 
         urls: {
             baseUrl: baseUrl,
