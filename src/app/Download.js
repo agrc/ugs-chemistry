@@ -65,6 +65,13 @@ define([
                 query: this.convertToResultsQuery(this.currentQuery)
             });
         },
+        initGP: function () {
+            console.log('app.Download:initGP', arguments);
+
+            this.inherited(arguments);
+
+            this.gp.on('error', this.reset.bind(this));
+        },
         onFormatChange: function () {
             // summary:
             //      type changed
