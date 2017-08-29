@@ -29,7 +29,7 @@
     "grunt-ssh": "^0",
     "jshint-stylish": "^2.1.0",
     "load-grunt-tasks": "^3.1.0",
-    "uglify-js": "^3.0.28"
+    "uglify-js": "^2"
   },
   "scripts": {
     "test": "grunt travis --verbose"
